@@ -9,7 +9,7 @@ class DataManager {
         void put(Entry);
         DataManager();
     private:
-        void seal();
+        void DumpDay();
         void init();
 }
 
@@ -31,12 +31,12 @@ DataManager::put(entry Entry) {
 }
 
 /*
-description: seals outfile.txt so that no more entries can be added. This is done at the 
+description: seals the day's outfile.txt so that no more entries can be added. This is done at the 
     end of the day at 6:00pm.
 params: 
 returns: 
 */
-DataManager::seal() {
+DataManager::DumpDay() {
     ofstream outfile;
     outfile.open("outfile.txt", ios::app);
 
