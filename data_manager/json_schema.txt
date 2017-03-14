@@ -1,0 +1,1 @@
+{"entry_type" : "$__ENTRY_TYPE__$", "start_time" : "$__START__$", "end_time" : "$__END__$", "text" : "$__TEXT__$", "encoding" : "$__ENCODING__$", "key_combo" : "$__KEY_COMBO__$", "program" : "$__PROGRAM__$", "active_window" : "$__ACTIVE_WINDOW__$"},
