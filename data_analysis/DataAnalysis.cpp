@@ -1,4 +1,4 @@
-#include <../data_manager/DataManager.cpp>
+#include <DataManager.cpp>
 #include <Entry.cpp>
 #include <string>
 #include <sstream>
