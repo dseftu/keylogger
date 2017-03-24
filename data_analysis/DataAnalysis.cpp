@@ -33,6 +33,7 @@ DataAnalyser::buildEntryFromJsonString(string json_str) {
         and remove '{', '"', ',' from the beginning and end of each string
         After this it is ready to be thrown into an entry object
     */
+    //TODO
     for(j = 0; j < i; j++) {
        ch = *arr[j].begin();
        if(ch == '{') {
