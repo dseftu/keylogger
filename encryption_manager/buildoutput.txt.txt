@@ -1,0 +1,14 @@
+-------------- Build: Debug in encryptionDriver (compiler: GNU GCC Compiler)---------------
+
+mingw32-g++.exe -Wall -fexceptions -g -lopenssl -I"C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\encryptionDriver\include" -I..\include -c "C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\EncryptionManager.cpp" -o obj\Debug\EncryptionManager.o
+mingw32-g++.exe  -o bin\Debug\encryptionDriver.exe obj\Debug\EncryptionManager.o   "C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\lib\VC\libcrypto32MDd.lib" "C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\lib\VC\libssl32MDd.lib"
+Output file is bin\Debug\encryptionDriver.exe with size 103.16 KB
+Process terminated with status 0 (0 minute(s), 0 second(s))
+0 error(s), 0 warning(s) (0 minute(s), 0 second(s))
+ 
+
+-------------- Run: Debug in encryptionDriver (compiler: GNU GCC Compiler)---------------
+
+Checking for existence: C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\encryptionDriver\bin\Debug\encryptionDriver.exe
+Executing: "C:\Program Files (x86)\CodeBlocks/cb_console_runner.exe" "C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\encryptionDriver\bin\Debug\encryptionDriver.exe"  (in C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\encryption_manager\encryptionDriver\.)
+Process terminated with status 0 (0 minute(s), 43 second(s))
