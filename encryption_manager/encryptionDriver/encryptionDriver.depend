@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1490892390 source:c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\encryptionmanager.cpp
+	<iostream>
+	<cstring>
+	<stdio.h>
+	<openssl/aes.h>
+
+1487248614 c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\include\openssl\aes.h
+	<openssl/opensslconf.h>
+	<stddef.h>
+
+1487248614 c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\include\openssl\opensslconf.h
+

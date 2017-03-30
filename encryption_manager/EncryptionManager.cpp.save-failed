@@ -19,40 +19,53 @@ string EncryptionManager::encrypt(string text) {
     // determine this string length
     int len =(text.length());
 
-    // number of splits we need to make (16 byte blocks)
-    int iterations = ((len)/16)+1;
+    bool reachedEnd = false;
 
+    // number of splits we need to make (16 byte blocks)
+    int iterations = ((len)/16)+2;
+     printf("CnumIterations = %d\n", iterations);
     // arrays to handle the input/output to the encrypt
     unsigned char enc_out[16];
     unsigned char enc_in[16];
 
     // a nicer array to be converted to a string later
-    char result[iterations*16];
+    char result[iterations*16+1];
+
 
     AES_KEY enc_key;
     AES_set_encrypt_key(key, 256, &enc_key);
 
     for (int i = 0; i <= iterations; i++){
-        for (int j = 0; j < 16; j++)
-            enc_in[j]=text[(i*16)+j];
+        for (int j = 0; j < 16; j++){
+            if (!reachedEnd){
+                    printf("iter %d\n",(i*16)+j);
+                if (text[(i*16)+j] == '\0') reachedEnd = false;
+                enc_in[j]=text[(i*16)+j];
+            }
+            else
+                enc_in[j]='\0';
+        }
 
         AES_encrypt(enc_in, enc_out, &enc_key);
-
         for (int j = 0; j < 16; j++)
             result[(i*16)+j]=enc_out[j];
     }
-
     return string(result);
 }
 
+// to be expanded
 string EncryptionManager::decrypt(string text) {
 
     // determine this string length
-    int len = text.length();
+
+    int len = sizeof(text);
+    printf("looking at derypt len %d\n", len);
 
     // number of splits we need to make (16 byte blocks)
     int iterations = ((len)/16)+1;
+    printf("DnumIterations = %d\n", iterations);
 
+    bool reachedEnd = false;
     // arrays to handle the input/output to the decrypt
     unsigned char dec_out[16];
     unsigned char dec_in[16];
@@ -64,31 +77,42 @@ string EncryptionManager::decrypt(string text) {
     AES_set_decrypt_key(key,256,&dec_key);
 
     for (int i = 0; i <= iterations; i++){
-        for (int j = 0; j < 16; j++)
-            dec_in[j]=text[(i*16)+j];
+        for (int j = 0; j < 16; j++){
+            if (!reachedEnd){
+                    printf("iter %d\n",(i*16)+j);
+                if (text[(i*16)+j] == '\0') reachedEnd = false;
+                dec_in[j]=text[(i*16)+j];
+                }
+            else
+                dec_in[j]='\0';
 
         AES_decrypt(dec_in, dec_out, &dec_key);
 
         for (int j = 0; j < 16; j++)
             result[(i*16)+j]=dec_out[j];
         }
-
+    }
     return string(result);
 }
 
-// test driver
 int main()
 {
-    string test = "Here is a test of a really long string!\n\nIt has escape characters!1235675890!@#$%^&*()<>The quick brown fox blablabla\n\n\n\n\t\t\tFOR REAL";
+    string test = "hello world!hello world!hello world!hello world!";
+    printf("%s\n", test);
 
     EncryptionManager em;
     string encrypted = em.encrypt(test);
     string decrypted = em.decrypt(encrypted);
 
-    cout << "INPUT:     " << test << "\n\n\n";
-    cout << "ENCRYPTED: " << encrypted << "\n\n\n";
-    cout << "DECRYPTED: " << decrypted << "\n\n\n";
+    cout << "input:     " << test << "\n";
+    cout << "encrypted: " << encrypted << "\n";
+    cout << "decrypted: " << decrypted << "\n";
+
+
 
     return 0;
+
+
+
 }
 
