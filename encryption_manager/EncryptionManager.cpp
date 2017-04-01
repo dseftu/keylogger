@@ -17,7 +17,8 @@ class EncryptionManager {
 string EncryptionManager::encrypt(string text) {
 
     // determine this string length
-    int len =(text.length());
+    int len = strlen((char*)text.c_str());
+    //int len =(text.length());
 
     // number of splits we need to make (16 byte blocks)
     int iterations = ((len)/16)+1;
@@ -48,7 +49,7 @@ string EncryptionManager::encrypt(string text) {
 string EncryptionManager::decrypt(string text) {
 
     // determine this string length
-    int len = text.length();
+    int len = strlen((char*)text.c_str());
 
     // number of splits we need to make (16 byte blocks)
     int iterations = ((len)/16)+1;
@@ -79,14 +80,14 @@ string EncryptionManager::decrypt(string text) {
 // test driver
 int main()
 {
-    string test = "Here is a test of a really long string!\n\nIt has escape characters!1235675890!@#$%^&*()<>The quick brown fox blablabla\n\n\n\n\t\t\tFOR REAL";
+    string test = "{\n\t\"active_process\": \"chrome\",\n\t\"process_id\": \"2476\",\n\t\"start_time\": \"03/31/2017-00:06:43\",\n\t\"end_time\": \"03/31/2017-00:12:23\",\n\t\"session_duration\": \"340\",\n\t\"logged_keystrokes\": \"This is a sample of wh@t the keylogg3r will be l0gging.\"\n}{\n\t\"active_process\": \"chrome\",\n\t\"process_id\": \"2476\",\n\t\"start_time\": \"03/31/2017-00:06:43\",\n\t\"end_time\": \"03/31/2017-00:12:23\",\n\t\"session_duration\": \"340\",\n\t\"logged_keystrokes\": \"This is a sample of wh@t the keylogg3r will be l0gging.\"\n}{\n\t\"active_process\": \"chrome\",\n\t\"process_id\": \"2476\",\n\t\"start_time\": \"03/31/2017-00:06:43\",\n\t\"end_time\": \"03/31/2017-00:12:23\",\n\t\"session_duration\": \"340\",\n\t\"logged_keystrokes\": \"This is a sample of wh@t the keylogg3r will be l0gging.\"\n}{\n\t\"active_process\": \"chrome\",\n\t\"process_id\": \"2476\",\n\t\"start_time\": \"03/31/2017-00:06:43\",\n\t\"end_time\": \"03/31/2017-00:12:23\",\n\t\"session_duration\": \"340\",\n\t\"logged_keystrokes\": \"This is a sample of wh@t the keylogg3r will be l0gging.\"\n}{\n\t\"active_process\": \"chrome\",\n\t\"process_id\": \"2476\",\n\t\"start_time\": \"03/31/2017-00:06:43\",\n\t\"end_time\": \"03/31/2017-00:12:23\",\n\t\"session_duration\": \"340\",\n\t\"logged_keystrokes\": \"This is a sample of wh@t the keylogg3r will be l0gging.\"\n}";
 
     EncryptionManager em;
     string encrypted = em.encrypt(test);
     string decrypted = em.decrypt(encrypted);
 
     cout << "INPUT:     " << test << "\n\n\n";
-    cout << "ENCRYPTED: " << encrypted << "\n\n\n";
+    //cout << "ENCRYPTED: " << encrypted << "\n\n\n";
     cout << "DECRYPTED: " << decrypted << "\n\n\n";
 
     return 0;
