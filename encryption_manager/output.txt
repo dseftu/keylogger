@@ -1,18 +1,0 @@
-input string length = 12
-encrypted string length = 16
-input:     hello world!
-encrypted: ¦~tªn¦-+e¦'-A
-decrypted: hello world!
-
-
-input string length = 28
-encrypted2 string length = 25
-input:     hello world! asdasdasdasdasd
-encrypted: eö¦¦
-R_
-Oá
-¦_G«ô[8o|4¦v0
-decrypted: »ello world! asda[8oFEúp0
-
-Process returned 0 (0x0)   execution time : 0.019 s
-Press any key to continue.
