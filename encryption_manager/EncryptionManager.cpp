@@ -39,9 +39,6 @@ void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int
 
 string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
 
-    // determine this string length
-    printf("decrypt len %d\n", len);
-
     // number of splits we need to make (16 byte blocks)
     int iterations = ((len)/16)+1;
 
