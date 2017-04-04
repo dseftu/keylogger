@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1490892390 source:c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\encryptionmanager.cpp
+1491071999 source:c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\encryptionmanager.cpp
+	<Windows.h>
 	<iostream>
 	<cstring>
 	<stdio.h>
