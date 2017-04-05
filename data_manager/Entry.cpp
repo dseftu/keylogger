@@ -8,7 +8,7 @@ class Entry {
         Entry(string);
         Entry(string, string, string, string, string, string);
         string toString();
-}
+};
 
 Entry::Entry (string startTime) {
     self.startTime = startTime;
@@ -35,6 +35,7 @@ Entry::Entry (string entryType, string startTime, string endTime,
 }
 
 Entry::toString() {
-    string temp = "{\"entryType\" : \"" + entryType + "\", \"startTime\" : \"" + startTime + "\", \"endTime\" : \"" + endTime + "\", \"text\" : \"" + text + "\", \"encoding\" : \"" + encoding + "\", \"keyCombo\" : \"" + keyCombo + "\", \"program\" : \"" + programName + "\", \"activeWindow\" : \"" + activeWindow + "\"},"
+    string temp = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"}";
+    // string temp = "{\"entryType\" : \"" + entryType + "\", \"startTime\" : \"" + startTime + "\", \"endTime\" : \"" + endTime + "\", \"text\" : \"" + text + "\", \"encoding\" : \"" + encoding + "\", \"keyCombo\" : \"" + keyCombo + "\", \"program\" : \"" + programName + "\", \"activeWindow\" : \"" + activeWindow + "\"},";
     return temp;
 }
