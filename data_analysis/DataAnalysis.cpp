@@ -147,7 +147,7 @@ DataAnalyser::analyse(vector<Entry> & v) {
     ofstream myfile;
     myfile.open("out.txt");
     int totalLog = 0; 
-    int hours, minutes, seconds; 
+    int hours, minutes, seconds;
     vector<Entry> temp;
     Entry top[5];
     temp = v;
@@ -278,5 +278,4 @@ int main() {
         cout << vect[i].text << endl;
     }
     cout << endl;
-    data.analyse(vect);
 }

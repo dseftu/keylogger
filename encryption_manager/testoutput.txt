@@ -1,0 +1,84 @@
+decrypt len 1185
+PLAINTEXT: 
+
+{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}
+
+
+ENCRYPTED: 
+
+b]NNÞ:Û%º±¡Ë
+
+
+DECRYPTED: {
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}{
+	"active_process": "chrome",
+	"process_id": "2476",
+	"start_time": "03/31/2017-00:06:43",
+	"end_time": "03/31/2017-00:12:23",
+	"session_duration": "340",
+	"logged_keystrokes": "This is a sample of wh@t the keylogg3r will be l0gging."
+}
+
+
