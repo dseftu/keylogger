@@ -1,3 +1,8 @@
+/***********************************
+    Dallas Seroski
+    Data Analyser
+************************************/
+
 //#include <DataManager.cpp>
 //#include "..\data_manager\Entry.cpp"
 #include <string>
@@ -6,7 +11,8 @@
 #include <algorithm>
 #include <iostream>
 #include <fstream>
-
+#include <iomanip> 
+#include <cmath>
 using std::string;
 using std::vector;
 using namespace std;
@@ -34,7 +40,6 @@ description: builds an Entry object from a json string
 params: 
 returns: 
 */
-// TOD
 Entry DataAnalyser::buildEntryFromJsonString(string json_str) {
     string arr[5000];
     string activeProcess = "", duration, text = "";
@@ -143,11 +148,11 @@ vector<Entry> DataAnalyser::buildArray(vector<Entry> & v, Entry entry) {
 DataAnalyser::analyse(vector<Entry> & v) {
     string swear[] = {"dumb", "stupid", "donkey"};
     int numswear[] = {0, 0, 0};
-
+    string unprod[] = {"steam", "uplay", "origin", "solitaire"};
     ofstream myfile;
-    myfile.open("out.txt");
+    myfile.open("../email_manager/out.txt");
     int totalLog = 0; 
-    int hours, minutes, seconds;
+    int hours, minutes, seconds; 
     vector<Entry> temp;
     Entry top[5];
     temp = v;
@@ -167,8 +172,8 @@ DataAnalyser::analyse(vector<Entry> & v) {
     string str;
     int found;
     for(i = 0; i < temp.size(); i++) {
+        str = temp[i].text;
         for(j = 0; j < 3; j++) {
-            str = temp[i].text;
             found = str.find(swear[j]);
             if(found > 0) numswear[j]++;
         }
@@ -177,13 +182,89 @@ DataAnalyser::analyse(vector<Entry> & v) {
     // Adds up total Log Time
     for(i = 0; i < temp.size(); i++)
         totalLog += temp[i].duration;
-        
+
     // Converts totalLog Time to H M S and sends it to file
     minutes = totalLog / 60;
     hours = minutes / 60;
-    myfile << hours << " " << minutes%60 << " " << totalLog%60 << "\n";
+    myfile << setw(2) << setfill('0') << hours << " ";
+    myfile << setw(2) << setfill('0') << minutes%60 << " ";
+    myfile << setw(2) << setfill('0') << totalLog%60 << "\n";
 
+    int unprodTime = 0;
+    int prodTime = 0;
+    // Gets unproductive time
+    for(i = 0; i < temp.size(); i++) {
+        str = temp[i].name;
+        for(j = 0; j < 4; j++) {
+            found = str.find(unprod[j]);
+            if(found != -1)
+                unprodTime += temp[i].duration;
+        }
+    }
+    
+    // Sets productive time
+    prodTime = totalLog - unprodTime;
 
+    // Converts productive time to H M S and sends it to the file
+    minutes = prodTime / 60;
+    hours = minutes / 60;
+    myfile << setw(2) << setfill('0') << hours << " ";
+    myfile << setw(2) << setfill('0') << minutes%60 << " ";
+    myfile << setw(2) << setfill('0') << prodTime%60 << "\n";
+
+    // Converts unproductive time to H M S and sends it to the file
+    minutes = unprodTime / 60;
+    hours = minutes / 60;
+    myfile << setw(2) << setfill('0') << hours << " ";
+    myfile << setw(2) << setfill('0') << minutes%60 << " ";
+    myfile << setw(2) << setfill('0') << unprodTime%60 << "\n";
+
+    // Sets productivity score and prints it to the file
+    float score = (float)prodTime / (float)totalLog;
+    score = roundf(score * 100) / 100;
+    myfile << score << "\n";
+
+    // Top 5 programs output
+    int top5Durations = 0;
+
+    // Sets top 5 durations
+    for(i = 0; i < 5; i++) {
+        top5Durations += top[i].duration;
+    }
+    
+    /*
+        Fixes situations where the percentages don't add up to 1.0
+        by either adding or subtracting .01 to top5 (the smallest amount)
+        However, if top5 is smaller than .02 it will subtract .01 from
+        top4 (the next smallest).
+    */
+    float top1, top2, top3, top4, top5;
+    top1 = (float)top[0].duration / (float)top5Durations;
+    top1 = roundf(top1 * 100) / 100;
+    top2 = (float)top[1].duration / (float)top5Durations;
+    top2 = roundf(top2 * 100) / 100;
+    top3 = (float)top[2].duration / (float)top5Durations;
+    top3 = roundf(top3 * 100) / 100;
+    top4 = (float)top[3].duration / (float)top5Durations;
+    top4 = roundf(top4 * 100) / 100;
+    top5 = (float)top[4].duration / (float)top5Durations;
+    top5 = roundf(top5 * 100) / 100;
+    while((float)(top1 + top2 + top3 + top4 + top5) > 1.0) {
+        if(top5 < .02)
+            top4 = top4 - .01;
+        else
+            top5 = top5 - .01;
+    }
+    while((float)(top1 + top2 + top3 + top4 + top5) < 1.0) {
+        top5 = top5 + .01;
+    }
+
+    // Outputs the top 5 programs and percentages
+    myfile << top[0].name << "\n" << top1 << "\n";
+    myfile << top[1].name << "\n" << top2 << "\n";
+    myfile << top[2].name << "\n" << top3 << "\n";
+    myfile << top[3].name << "\n" << top4 << "\n";
+    myfile << top[4].name << "\n" << top5 << "\n";
 
     // Prints out swear words and how many times they appear to file
     for(i = 0; i < 3; i++) { 
@@ -192,47 +273,37 @@ DataAnalyser::analyse(vector<Entry> & v) {
         else
             myfile << swear[i] << endl << numswear[i] << "\n";
     }
-    
-    
 }
-
-/*
-dummy
-donkey
-stupid
-facebook
-myspace
-*/
 
 // testing 
 int main() {
     string json_str1, json_str2, json_str3, json_str4, json_str5, json_str6;
     string activeProcess, procid, startTime, endTime, duration, text;
-	activeProcess = "chrome.exe";
+	activeProcess = "chrome";
     procid = "2476";
     startTime = "03/31/2017-00:06:43";
     endTime = "03/31/2017-00:12:23";
-    duration = "340";
+    duration = "3292";
     text = "This is a  of wh@t the www.facebook.com keylogg3r will be l0gging.";
     json_str1 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
     
-    activeProcess = "explorer.exe";
-    procid = "2477";
+    activeProcess = "explorer";
+    procid = "12392";
     startTime = "03/31/2017-00:06:43";
     endTime = "03/31/2017-00:12:23";
-    duration = "350";
+    duration = "3112";
     text = "This is a  of wh@t the www.facebook.com keyloggging.";
     json_str2 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
     
-    activeProcess = "WINWORD.exe";
-    procid = "2478";
+    activeProcess = "WINWORD";
+    procid = "1232";
     startTime = "03/31/2017-00:06:43";
     endTime = "03/31/2017-00:12:23";
     duration = "3600";
     text = "Thi wh@t the www.facebook.com stupid will be l0gging.";
     json_str3 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
 
-    activeProcess = "crazy.exe";
+    activeProcess = "solitaire";
     procid = "2422";
     startTime = "03/31/2017-00:06:43";
     endTime = "03/31/2017-00:12:23";
@@ -240,15 +311,15 @@ int main() {
     text = "This is a stupid keylogg3r will be l0gging.";
     json_str4 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
 
-    activeProcess = "crazierrrr.exe";
+    activeProcess = "steam";
     procid = "2472";
     startTime = "03/31/2017-00:06:43";
     endTime = "03/31/2017-00:12:23";
-    duration = "900";
+    duration = "5922";
     text = "This is a stupid of wh@t the www.fal be donkey.";
     json_str5 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
 
-    activeProcess = "tes.exe";
+    activeProcess = "tes";
     procid = "2476";
     startTime = "03/31/2017-00:06:43";
     endTime = "03/31/2017-00:12:23";
@@ -271,11 +342,5 @@ int main() {
     vect = data.buildArray(vect, ent);
     ent = data.buildEntryFromJsonString(json_str6);
     vect = data.buildArray(vect, ent);
-    int i;
-    for(i = 0; i < vect.size(); i++) {
-        cout << vect[i].name << endl;
-        cout << vect[i].duration << endl;
-        cout << vect[i].text << endl;
-    }
-    cout << endl;
+    data.analyse(vect);
 }
