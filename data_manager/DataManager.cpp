@@ -3,6 +3,11 @@
 #include <fstream>
 #include <EncryptionManager.cpp>
 #include <DataAnalysis.cpp>
+#include <Entry.cpp>
+#include <cstring>
+#include <rapidjson/document.h>
+
+using namespace rapidjson;
 
 class DataManager {
     public:
@@ -13,8 +18,9 @@ class DataManager {
         void init();
 }
 
-DataManager::DataManager() {
+EncryptionManager em;
 
+DataManager::DataManager() {
 }
 
 /*
@@ -22,12 +28,19 @@ description: appends an entry to the end of outfile.txt
 params: 
 returns: 
 */
-DataManager::put(entry Entry) {
+DataManager::put(Entry entry) {
     ofstream infile;
     infile.open("json_schema.txt", ios::in);
 
     ofstream outfile;
     outfile.open("outfile.txt", ios::app);
+    string entryString = entry.toString();
+    
+    int len = entryString.length();
+    unsigned char* ciphertext[len];
+    em.encrypt(entryString, ciphertext, len);
+    
+    // outfile.append(entry.toString());
 }
 
 /*
@@ -38,20 +51,31 @@ returns:
 */
 DataManager::DumpDay() {
     ofstream outfile;
-    outfile.open("outfile.txt", ios::app);
+    // outfile.open("outfile.txt", ios::app);
+    string line;
+    string out_json;
+    ifstream outfile ("outfile.txt");
+    if(outfile.is_open()) {
+        while(getline (outfile,line)) {
+            cout << line; // DEBUG
+        }
+        outfile.close();
+    }
+    else cout << "Unable to open file";
 
-    string close_bracket = "}"
 }
 
 /*
-description: 
+description: begins the new outfile
 params: 
 returns: 
 */
 DataManager::init() {
     ofstream outfile;
-    outfile.open("outfile.txt", ios::app);
-
-    string open_bracket = "{"
-
+    outfile.open("outfile.txt", ios::trunc);
+    outfile << "hello world";
+}
+// test
+int main() {
+    cout < "Hello World!";
 }
