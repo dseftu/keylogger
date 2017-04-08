@@ -1,34 +1,14 @@
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <EncryptionManager.cpp>
-#include <DataAnalysis.cpp>
-#include <Entry.cpp>
-#include <cstring>
-#include <rapidjson/document.h>
-
-using namespace rapidjson;
-
-class DataManager {
-    public:
-        void put(Entry);
-        DataManager();
-    private:
-        void DumpDay();
-        void init();
-}
+#include "DataManager.h"
 
 EncryptionManager em;
 
-DataManager::DataManager() {
-}
 
 /*
 description: appends an entry to the end of outfile.txt
 params: 
 returns: 
 */
-DataManager::put(Entry entry) {
+void DataManager::put(Entry entry) {
     ofstream infile;
     infile.open("json_schema.txt", ios::in);
 
@@ -37,7 +17,7 @@ DataManager::put(Entry entry) {
     string entryString = entry.toString();
     
     int len = entryString.length();
-    unsigned char* ciphertext[len];
+	unsigned char* ciphertext = new unsigned char[len];
     em.encrypt(entryString, ciphertext, len);
     
     // outfile.append(entry.toString());
@@ -49,7 +29,7 @@ description: seals the day's outfile.txt so that no more entries can be added. T
 params: 
 returns: 
 */
-DataManager::DumpDay() {
+void DataManager::DumpDay() {
     ofstream outfile;
     // outfile.open("outfile.txt", ios::app);
     string line;
@@ -70,12 +50,12 @@ description: begins the new outfile
 params: 
 returns: 
 */
-DataManager::init() {
+void DataManager::init() {
     ofstream outfile;
     outfile.open("outfile.txt", ios::trunc);
     outfile << "hello world";
 }
 // test
 int main() {
-    cout < "Hello World!";
+    cout << "Hello World!";
 }

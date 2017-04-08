@@ -29,6 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -65,22 +66,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);.\encryption_manager;.\encryption_manager\include;.\data_manager\rapidjson;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);CURL_STATICLIB</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>zlib;libpng;libharu;curl</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>.\email_manager\curl\libcurl_a.lib;.\email_manager\libharu\libhpdfd.lib;.\email_manager\libharu\libhpdfsd.lib;.\email_manager\libpng\libpng16d.lib;.\email_manager\zlib\zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,10 +113,31 @@
   <ItemGroup>
     <None Include="encryption_manager\lib\libcrypto-1_1.def" />
     <None Include="encryption_manager\lib\libssl-1_1.def" />
-    <None Include="encryption_manager\lib\mingw\libcrypto-1_1.def" />
-    <None Include="encryption_manager\lib\mingw\libssl-1_1.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="data_analysis\DataAnalysis.h" />
+    <ClInclude Include="data_manager\DataManager.h" />
+    <ClInclude Include="data_manager\Entry.h" />
+    <ClInclude Include="data_manager\rapidjson\allocators.h" />
+    <ClInclude Include="data_manager\rapidjson\document.h" />
+    <ClInclude Include="data_manager\rapidjson\encodedstream.h" />
+    <ClInclude Include="data_manager\rapidjson\encodings.h" />
+    <ClInclude Include="data_manager\rapidjson\filereadstream.h" />
+    <ClInclude Include="data_manager\rapidjson\filewritestream.h" />
+    <ClInclude Include="data_manager\rapidjson\fwd.h" />
+    <ClInclude Include="data_manager\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="data_manager\rapidjson\memorybuffer.h" />
+    <ClInclude Include="data_manager\rapidjson\memorystream.h" />
+    <ClInclude Include="data_manager\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="data_manager\rapidjson\pointer.h" />
+    <ClInclude Include="data_manager\rapidjson\prettywriter.h" />
+    <ClInclude Include="data_manager\rapidjson\rapidjson.h" />
+    <ClInclude Include="data_manager\rapidjson\reader.h" />
+    <ClInclude Include="data_manager\rapidjson\schema.h" />
+    <ClInclude Include="data_manager\rapidjson\stream.h" />
+    <ClInclude Include="data_manager\rapidjson\stringbuffer.h" />
+    <ClInclude Include="data_manager\rapidjson\writer.h" />
+    <ClInclude Include="email_manager\EmailManager.h" />
     <ClInclude Include="encryption_manager\encryption_manager.h" />
     <ClInclude Include="encryption_manager\include\openssl\aes.h" />
     <ClInclude Include="encryption_manager\include\openssl\asn1.h" />
@@ -189,6 +214,7 @@
     <ClInclude Include="encryption_manager\include\openssl\x509_vfy.h" />
     <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_EPILOGUE.H" />
     <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_PROLOGUE.H" />
+    <ClInclude Include="logging_manager\LoggingManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
