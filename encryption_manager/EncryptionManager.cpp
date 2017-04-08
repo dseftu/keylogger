@@ -20,12 +20,9 @@ extern int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
 	AES_KEY *key);
 
 
-
 // this is typically not a great thing to do.
 // acknowledging this fact makes it ok.
 static const unsigned char key[] = "4nA^9yFLjQpxC79t9J6kYlwsDf4AZqA%";
-
-
 
 /*
 description: Encrypted the string contained in plaintext and puts the encrypted data in the array pointed

@@ -1,0 +1,33 @@
+﻿  DataAnalysis.cpp
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\data_analysis\..\data_manager\DataManager.h(6): fatal error C1014: too many include files: depth = 1024
+  DataManager.cpp
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\data_manager\..\data_analysis\DataAnalysis.h(6): fatal error C1014: too many include files: depth = 1024
+  Entry.cpp
+data_manager\Entry.cpp(5): error C2065: 'self': undeclared identifier
+data_manager\Entry.cpp(5): error C2228: left of '.startTime' must have class/struct/union
+  data_manager\Entry.cpp(5): note: type is 'unknown-type'
+data_manager\Entry.cpp(6): error C2065: 'self': undeclared identifier
+data_manager\Entry.cpp(6): error C2228: left of '.endTime' must have class/struct/union
+  data_manager\Entry.cpp(6): note: type is 'unknown-type'
+data_manager\Entry.cpp(7): error C2065: 'self': undeclared identifier
+data_manager\Entry.cpp(7): error C2228: left of '.duration' must have class/struct/union
+  data_manager\Entry.cpp(7): note: type is 'unknown-type'
+data_manager\Entry.cpp(8): error C2065: 'self': undeclared identifier
+data_manager\Entry.cpp(8): error C2228: left of '.text' must have class/struct/union
+  data_manager\Entry.cpp(8): note: type is 'unknown-type'
+data_manager\Entry.cpp(9): error C2065: 'self': undeclared identifier
+data_manager\Entry.cpp(9): error C2228: left of '.programName' must have class/struct/union
+  data_manager\Entry.cpp(9): note: type is 'unknown-type'
+data_manager\Entry.cpp(12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+data_manager\Entry.cpp(12): error C2556: 'int Entry::toString(void)': overloaded function differs only by return type from 'std::string Entry::toString(void)'
+  c:\users\dseft\google drive\github workspace\keylogger\keylogger\data_manager\Entry.h(9): note: see declaration of 'Entry::toString'
+data_manager\Entry.cpp(12): error C2371: 'Entry::toString': redefinition; different basic types
+  c:\users\dseft\google drive\github workspace\keylogger\keylogger\data_manager\Entry.h(9): note: see declaration of 'Entry::toString'
+data_manager\Entry.cpp(13): error C2065: 'activeProcess': undeclared identifier
+data_manager\Entry.cpp(13): error C2065: 'procid': undeclared identifier
+  EmailManager.cpp
+email_manager\EmailManager.cpp(8): fatal error C1083: Cannot open include file: 'curl.h': No such file or directory
+  EncryptionManager.cpp
+  LoggingManager.cpp
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\data_analysis\..\data_manager\DataManager.h(6): fatal error C1014: too many include files: depth = 1024
+  Generating Code...

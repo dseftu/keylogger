@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="email_manager\EmailManager.cpp">
+      <Filter>EmailManager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_analysis\DataAnalysis.cpp">
+      <Filter>DataAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="encryption_manager\EncryptionManager.cpp">
+      <Filter>EncryptionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\Entry.cpp">
+      <Filter>DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager\DataManager.cpp">
+      <Filter>DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="logging_manager\LoggingManager.cpp">
+      <Filter>LoggingManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="encryption_manager\include\openssl\asn1_mac.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_EPILOGUE.H">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_PROLOGUE.H">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\aes.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\asn1.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\asn1t.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\async.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\bio.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\blowfish.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\bn.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\buffer.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\camellia.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\cast.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\cmac.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\cms.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\comp.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\conf.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\conf_api.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\crypto.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ct.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\des.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\dh.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\dsa.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\dtls1.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\e_os2.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ebcdic.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ec.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ecdh.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ecdsa.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\engine.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\err.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\evp.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\hmac.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\idea.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\kdf.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\lhash.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\md2.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\md4.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\md5.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\mdc2.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\modes.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\obj_mac.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\objects.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ocsp.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\opensslconf.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\opensslv.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ossl_typ.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\pem.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\pem2.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\pkcs7.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\pkcs12.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\rand.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\rc2.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\rc4.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\rc5.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ripemd.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\rsa.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\safestack.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\seed.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\sha.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\srp.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\srtp.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ssl.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ssl2.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ssl3.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\stack.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\symhacks.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\tls1.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ts.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\txt_db.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\ui.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\whrlpool.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\x509.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\x509_vfy.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\include\openssl\x509v3.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\allocators.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\document.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\encodedstream.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\encodings.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\filereadstream.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\filewritestream.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\fwd.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\istreamwrapper.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\memorybuffer.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\memorystream.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\ostreamwrapper.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\pointer.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\prettywriter.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\rapidjson.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\reader.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\schema.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\stream.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\stringbuffer.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\rapidjson\writer.h">
+      <Filter>Other Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="logging_manager\LoggingManager.h">
+      <Filter>LoggingManager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_analysis\DataAnalysis.h">
+      <Filter>DataAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\Entry.h">
+      <Filter>DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manager\DataManager.h">
+      <Filter>DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption_manager\encryption_manager.h">
+      <Filter>EncryptionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="email_manager\EmailManager.h">
+      <Filter>EmailManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="encryption_manager\lib\libcrypto-1_1.def">
+      <Filter>Other Stuff</Filter>
+    </None>
+    <None Include="encryption_manager\lib\libssl-1_1.def">
+      <Filter>Other Stuff</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DataManager">
+      <UniqueIdentifier>{4439d34d-49f7-4970-a38d-b7cfd63b0598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EncryptionManager">
+      <UniqueIdentifier>{70ed1ff7-830a-4f1b-b1cb-4967b820b1b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataAnalysis">
+      <UniqueIdentifier>{d216c846-2bee-4595-a791-4d3988ccd11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EmailManager">
+      <UniqueIdentifier>{d29057c3-36c1-4dff-aa00-4b4131265220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LoggingManager">
+      <UniqueIdentifier>{f24097a2-ed07-4783-a0ee-b78b35823247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other Stuff">
+      <UniqueIdentifier>{a8aea09f-815d-4575-8f85-3cbc2f3ddc31}</UniqueIdentifier>
+      <Extensions>.h;</Extensions>
+    </Filter>
+  </ItemGroup>
+</Project>
