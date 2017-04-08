@@ -1,19 +1,31 @@
-#include <iostream>
-#include <cstring>
-#include <stdio.h>
-#include <openssl/aes.h>
+#include "encryption_manager.h"
 
-using namespace std;
+using namespace System;
+using namespace System::Runtime::InteropServices;
+
+[DllImport("libcrypto-1_1.dll")]
+extern int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+	AES_KEY *key);
+
+[DllImport("libcrypto-1_1.dll")]
+extern void AES_encrypt(const unsigned char *in, unsigned char *out,
+	const AES_KEY *key);
+
+[DllImport("libcrypto-1_1.dll")]
+extern void AES_decrypt(const unsigned char *in, unsigned char *out,
+	const AES_KEY *key);
+
+[DllImport("libcrypto-1_1.dll")]
+extern int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+	AES_KEY *key);
+
+
 
 // this is typically not a great thing to do.
 // acknowledging this fact makes it ok.
 static const unsigned char key[] = "4nA^9yFLjQpxC79t9J6kYlwsDf4AZqA%";
 
-class EncryptionManager {
-    public:
-        void encrypt(string, unsigned char*, int);
-        string decrypt(unsigned char*, int);
-};
+
 
 /*
 description: Encrypted the string contained in plaintext and puts the encrypted data in the array pointed
@@ -71,7 +83,7 @@ string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
     unsigned char dec_in[16];
 
     // a nicer array to be converted to a string later
-    unsigned char result[iterations*16];
+	unsigned char* result = new unsigned char[iterations * 16];
 
     // sets up the decryption key for use
     AES_KEY dec_key;
@@ -118,8 +130,7 @@ int main()
     // retrieve the length of the data to encrypt.  This will also be the size
     // of the ciphertext array.
     int len = plaintext.length();
-    unsigned char ciphertext[len];
-
+	unsigned char* ciphertext = new unsigned char[len];
     // send the plaintext and the pointer to the ciphertext array to get encrypted.
     // ciphertext will get populated with encrypted text (plaintext will still exist)
     em.encrypt(plaintext, ciphertext, len);
@@ -128,9 +139,9 @@ int main()
     string decrypted = em.decrypt(ciphertext, len);
 
     // show some results out like whoa
-    cout << "PLAINTEXT: \n\n" << plaintext << "\n\n\n";
-    cout << "ENCRYPTED: \n\n" << ciphertext << "\n\n\n";
-    cout << "DECRYPTED: " << decrypted << "\n\n\n";
+    //cout << "PLAINTEXT: \n\n" << plaintext << "\n\n\n";
+    //cout << "ENCRYPTED: \n\n" << ciphertext << "\n\n\n";
+    //cout << "DECRYPTED: " << decrypted << "\n\n\n";
 
     // and a zero
     return 0;
