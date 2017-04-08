@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{46FCDD3B-3176-4BF8-9DE6-E34AE3039128}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="data_analysis\DataAnalysis.cpp" />
+    <ClCompile Include="data_manager\DataManager.cpp" />
+    <ClCompile Include="data_manager\Entry.cpp" />
+    <ClCompile Include="email_manager\EmailManager.cpp" />
+    <ClCompile Include="encryption_manager\EncryptionManager.cpp" />
+    <ClCompile Include="logging_manager\LoggingManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="encryption_manager\lib\libcrypto-1_1.def" />
+    <None Include="encryption_manager\lib\libssl-1_1.def" />
+    <None Include="encryption_manager\lib\mingw\libcrypto-1_1.def" />
+    <None Include="encryption_manager\lib\mingw\libssl-1_1.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="encryption_manager\encryption_manager.h" />
+    <ClInclude Include="encryption_manager\include\openssl\aes.h" />
+    <ClInclude Include="encryption_manager\include\openssl\asn1.h" />
+    <ClInclude Include="encryption_manager\include\openssl\asn1t.h" />
+    <ClInclude Include="encryption_manager\include\openssl\asn1_mac.h" />
+    <ClInclude Include="encryption_manager\include\openssl\async.h" />
+    <ClInclude Include="encryption_manager\include\openssl\bio.h" />
+    <ClInclude Include="encryption_manager\include\openssl\blowfish.h" />
+    <ClInclude Include="encryption_manager\include\openssl\bn.h" />
+    <ClInclude Include="encryption_manager\include\openssl\buffer.h" />
+    <ClInclude Include="encryption_manager\include\openssl\camellia.h" />
+    <ClInclude Include="encryption_manager\include\openssl\cast.h" />
+    <ClInclude Include="encryption_manager\include\openssl\cmac.h" />
+    <ClInclude Include="encryption_manager\include\openssl\cms.h" />
+    <ClInclude Include="encryption_manager\include\openssl\comp.h" />
+    <ClInclude Include="encryption_manager\include\openssl\conf.h" />
+    <ClInclude Include="encryption_manager\include\openssl\conf_api.h" />
+    <ClInclude Include="encryption_manager\include\openssl\crypto.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ct.h" />
+    <ClInclude Include="encryption_manager\include\openssl\des.h" />
+    <ClInclude Include="encryption_manager\include\openssl\dh.h" />
+    <ClInclude Include="encryption_manager\include\openssl\dsa.h" />
+    <ClInclude Include="encryption_manager\include\openssl\dtls1.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ebcdic.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ec.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ecdh.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ecdsa.h" />
+    <ClInclude Include="encryption_manager\include\openssl\engine.h" />
+    <ClInclude Include="encryption_manager\include\openssl\err.h" />
+    <ClInclude Include="encryption_manager\include\openssl\evp.h" />
+    <ClInclude Include="encryption_manager\include\openssl\e_os2.h" />
+    <ClInclude Include="encryption_manager\include\openssl\hmac.h" />
+    <ClInclude Include="encryption_manager\include\openssl\idea.h" />
+    <ClInclude Include="encryption_manager\include\openssl\kdf.h" />
+    <ClInclude Include="encryption_manager\include\openssl\lhash.h" />
+    <ClInclude Include="encryption_manager\include\openssl\md2.h" />
+    <ClInclude Include="encryption_manager\include\openssl\md4.h" />
+    <ClInclude Include="encryption_manager\include\openssl\md5.h" />
+    <ClInclude Include="encryption_manager\include\openssl\mdc2.h" />
+    <ClInclude Include="encryption_manager\include\openssl\modes.h" />
+    <ClInclude Include="encryption_manager\include\openssl\objects.h" />
+    <ClInclude Include="encryption_manager\include\openssl\obj_mac.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ocsp.h" />
+    <ClInclude Include="encryption_manager\include\openssl\opensslconf.h" />
+    <ClInclude Include="encryption_manager\include\openssl\opensslv.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ossl_typ.h" />
+    <ClInclude Include="encryption_manager\include\openssl\pem.h" />
+    <ClInclude Include="encryption_manager\include\openssl\pem2.h" />
+    <ClInclude Include="encryption_manager\include\openssl\pkcs12.h" />
+    <ClInclude Include="encryption_manager\include\openssl\pkcs7.h" />
+    <ClInclude Include="encryption_manager\include\openssl\rand.h" />
+    <ClInclude Include="encryption_manager\include\openssl\rc2.h" />
+    <ClInclude Include="encryption_manager\include\openssl\rc4.h" />
+    <ClInclude Include="encryption_manager\include\openssl\rc5.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ripemd.h" />
+    <ClInclude Include="encryption_manager\include\openssl\rsa.h" />
+    <ClInclude Include="encryption_manager\include\openssl\safestack.h" />
+    <ClInclude Include="encryption_manager\include\openssl\seed.h" />
+    <ClInclude Include="encryption_manager\include\openssl\sha.h" />
+    <ClInclude Include="encryption_manager\include\openssl\srp.h" />
+    <ClInclude Include="encryption_manager\include\openssl\srtp.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ssl.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ssl2.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ssl3.h" />
+    <ClInclude Include="encryption_manager\include\openssl\stack.h" />
+    <ClInclude Include="encryption_manager\include\openssl\symhacks.h" />
+    <ClInclude Include="encryption_manager\include\openssl\tls1.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ts.h" />
+    <ClInclude Include="encryption_manager\include\openssl\txt_db.h" />
+    <ClInclude Include="encryption_manager\include\openssl\ui.h" />
+    <ClInclude Include="encryption_manager\include\openssl\whrlpool.h" />
+    <ClInclude Include="encryption_manager\include\openssl\x509.h" />
+    <ClInclude Include="encryption_manager\include\openssl\x509v3.h" />
+    <ClInclude Include="encryption_manager\include\openssl\x509_vfy.h" />
+    <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_EPILOGUE.H" />
+    <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_PROLOGUE.H" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
