@@ -9,8 +9,6 @@
 #include "..\email_manager\EmailManager.h"
 using namespace std;
 
-
-
 struct timeStruct {
     time_t rawtime;
     string str;

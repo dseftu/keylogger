@@ -79,12 +79,16 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>zlib;libpng;libharu;curl</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>.\email_manager\curl\libcurl_a.lib;.\email_manager\libharu\libhpdfd.lib;.\email_manager\libharu\libhpdfsd.lib;.\email_manager\libpng\libpng16d.lib;.\email_manager\zlib\zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,6 +113,7 @@
     <ClCompile Include="email_manager\EmailManager.cpp" />
     <ClCompile Include="encryption_manager\EncryptionManager.cpp" />
     <ClCompile Include="logging_manager\LoggingManager.cpp" />
+    <ClCompile Include="WindowsStuff\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="encryption_manager\lib\libcrypto-1_1.def" />
@@ -215,6 +220,8 @@
     <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_EPILOGUE.H" />
     <ClInclude Include="encryption_manager\include\openssl\__DECC_INCLUDE_PROLOGUE.H" />
     <ClInclude Include="logging_manager\LoggingManager.h" />
+    <ClInclude Include="WindowsStuff\stdafx.h" />
+    <ClInclude Include="WindowsStuff\targetver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

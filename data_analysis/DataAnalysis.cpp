@@ -2,7 +2,6 @@
     Dallas Seroski
     Data Analyser
 ************************************/
-
 #include "DataAnalysis.h"
 
 /*

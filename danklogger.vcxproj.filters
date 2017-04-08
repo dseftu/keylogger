@@ -19,6 +19,9 @@
     <ClCompile Include="logging_manager\LoggingManager.cpp">
       <Filter>LoggingManager</Filter>
     </ClCompile>
+    <ClCompile Include="WindowsStuff\stdafx.cpp">
+      <Filter>Windows Stuff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="encryption_manager\include\openssl\asn1_mac.h">
@@ -321,6 +324,12 @@
     <ClInclude Include="email_manager\EmailManager.h">
       <Filter>EmailManager</Filter>
     </ClInclude>
+    <ClInclude Include="WindowsStuff\stdafx.h">
+      <Filter>Windows Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsStuff\targetver.h">
+      <Filter>Windows Stuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="encryption_manager\lib\libcrypto-1_1.def">
@@ -349,6 +358,9 @@
     <Filter Include="Other Stuff">
       <UniqueIdentifier>{a8aea09f-815d-4575-8f85-3cbc2f3ddc31}</UniqueIdentifier>
       <Extensions>.h;</Extensions>
+    </Filter>
+    <Filter Include="Windows Stuff">
+      <UniqueIdentifier>{635ee499-ce63-467f-b5b1-307fbd0d77b1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

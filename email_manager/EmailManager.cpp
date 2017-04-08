@@ -621,11 +621,3 @@ void EmailManager::emailPDF()
 	}
 	delete[] fileBuf;
 }
-
-int main()
-{
-	EmailManager eMan;	
-	eMan.readAnalysisResults();
-
-	return 0;
-}

@@ -51,8 +51,14 @@ void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int
     for (int i = 0; i <= iterations; i++){
 
         // copy the next 16 byte block of data to be encrypted
-        for (int j = 0; j < 16; j++)
-            enc_in[j]=plaintext[(i*16)+j];
+		for (int j = 0; j < 16; j++) {
+			if (((i * 16) + j) > len)
+				enc_in[(i * 16) + j] = 0;
+			else
+				enc_in[j] = plaintext[(i * 16) + j];
+		}
+
+            
 
         // encrypt data (enc_out will end up plaintext)
         AES_encrypt(enc_in, enc_out, &enc_key);
@@ -111,11 +117,8 @@ string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
     return string((const char*)result);
 }
 
+
 /*
-description: Test driver for EncryptionManager.  Encrypts and Decrypts a preset string.
-params: 
-returns: 
-*/
 int main()
 {
     // this is the string to go through the wringer
@@ -143,4 +146,6 @@ int main()
     // and a zero
     return 0;
 }
+
+*/
 

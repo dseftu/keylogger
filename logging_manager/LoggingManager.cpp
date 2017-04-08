@@ -1,4 +1,5 @@
-﻿#include "LoggingManager.h"
+﻿
+#include "LoggingManager.h"
 
 DataManager dataManager = DataManager();
 EmailManager emailManager = EmailManager();
@@ -104,18 +105,17 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
         // only check for this range of ASCII codes
         for (i = 8; i<=190; i++){
             // get current time and strip date
-            timeStruct currentTime = getTime();
-            string timeCheck = currentTime.str.substr(currentTime.str.find_last_of("-")+1,currentTime.str.size()-1);
+			System::DateTime currentTime = System::DateTime().Now;			
+			bool timeToProcess = currentTime.Hour == 18;			
 
             // begin processing report at 6:00 PM
-            if(timeCheck == "18:00:00" && !sendReport) {
+            if(timeToProcess && !sendReport) {
                 // call dumpday
                 dataManager.DumpDay();
                 emailManager.readAnalysisResults();
-                emailManager.createPDF();
-                emailManager.emailPDF();
+                
                 sendReport = true;
-            } else if(timeCheck == "18:00:01") {
+            } else if(!timeToProcess) {
                 sendReport = false;
             }
 
@@ -195,8 +195,8 @@ void init() {
     getWindows();
 }
 
-int main() {
-    init();
-
-    return 0;
+int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
+{
+	init();
+	return 0;
 }

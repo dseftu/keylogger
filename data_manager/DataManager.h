@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include <cstring>
 #include <iostream>
 #include <fstream>
@@ -15,8 +14,6 @@ using std::string;
 using std::vector;
 
 #define BUFFER_LENGTH 16
-
-
 
 using namespace rapidjson;
 

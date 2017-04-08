@@ -6,6 +6,7 @@ EncryptionManager em;
 
 DataManager::DataManager() {
     em = EncryptionManager();
+
 }
 
 /*
@@ -22,10 +23,13 @@ void DataManager::put(Entry entry) {
     string entryString = entry.toString();
     
     int len = entryString.length();
-	unsigned char* ciphertext = new unsigned char[len];
+	unsigned char* ciphertext = new unsigned char[len+16];
     // ciphertext = entryString;
     em.encrypt(entryString, ciphertext, len);
-    outfile.write((const char*)ciphertext, len);
+	outfile.write((const char*)&ciphertext[0], len);
+	outfile.flush();
+
+	outfile.close();
 }
 
 /*
@@ -35,23 +39,23 @@ returns: none
 */
 void DataManager::DumpDay() {
     ifstream infile;
+	DataAnalyser da;
 	
     // outfile.open("outfile.bin", ios::app);
     string line;
     string out_json;
     int len;
     ifstream outfile("outfile.bin", ios::binary | ios::ate);
-    unsigned char* ciphertext[BUFFER_LENGTH];
-    vector<Entry> entryVector;
+	unsigned char* ciphertext = new unsigned char[BUFFER_LENGTH];
+    vector<EntryStruct> entryVector;
     if(infile.is_open()) {
         size_t file_length = infile.tellg();
 		infile.seekg(0, ios::beg);
 
         // main loop, goes through the file decrypting 16 bytes at a time.
         for(size_t i = 0; i < file_length; i += BUFFER_LENGTH){
-            read(ciphertext, BUFFER_LENGTH);
-            em.decrypt(ciphertext, BUFFER_LENGTH);
-            line += ciphertext;
+            outfile.read((char*)ciphertext, BUFFER_LENGTH);            
+            line += em.decrypt(ciphertext, BUFFER_LENGTH);;
             // looks to see if there is a opening and closing curly brace {}
             len = line.length();
             for(size_t j = 0; j < len; j++) {
@@ -70,8 +74,8 @@ void DataManager::DumpDay() {
                     cout << out_json << '\n'; // DEBUG
                     
                     // send the line to DataAnalysis
-                    EntryStruct entry = DataAnalysis.buildEntryFromJsonString(out_json);             
-					entryVector = DataAnalysis.buildArray(entryVector, entry);
+                    EntryStruct entry = da.buildEntryFromJsonString(out_json);
+					entryVector = da.buildArray(entryVector, entry);
                 }
             }
         }
@@ -79,13 +83,11 @@ void DataManager::DumpDay() {
     }
     else {
         cout << "Unable to open file";
-        return false;
     }
 
     // finally DataAnalysis analyses all the data.
-    DataAnalysis.analyse(entryVector);
+    da.analyse(entryVector);
     cout << "Successfully dumped days information";
-    return true;
 }
 
 /*
@@ -97,8 +99,4 @@ void DataManager::init() {
     ofstream outfile;
     outfile.open("outfile.bin", ios::out | ios::trunc);
     outfile.close();
-}
-// test
-int main() {
-    cout << "Hello World!";
 }
