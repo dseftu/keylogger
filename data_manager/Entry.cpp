@@ -1,12 +1,13 @@
 #include "Entry.h"
 
 Entry::Entry (string startTime, string endTime, string duration, 
-                string text, string programName) {
+                string text, string programName, string procid) {
     self.startTime = startTime;
     self.endTime = endTime;
     self.duration = duration;
     self.text = text;
     self.programName = programName;
+    self.procid = procid;
 }
 
 Entry::toString() {
