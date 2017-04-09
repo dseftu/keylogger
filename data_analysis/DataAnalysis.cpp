@@ -10,7 +10,8 @@ description: builds an Entry object from a json string
 params: 
 returns: 
 */
-Entry DataAnalyser::buildEntryFromJsonString(string json_str) {
+
+EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
     string arr[5000];
     string activeProcess = "", duration, text = "";
     int numduration; 
@@ -92,16 +93,16 @@ Entry DataAnalyser::buildEntryFromJsonString(string json_str) {
     numduration = atoi(duration.c_str());
 
     // Builds Entry to return
-    Entry temp;
+	EntryStruct temp;
     temp.name = activeProcess;
     temp.text = text;
     temp.duration = numduration;
     return temp;
 }
 
-vector<Entry> DataAnalyser::buildArray(vector<Entry> & v, Entry entry) {
+vector<EntryStruct> DataAnalyser::buildArray(vector<EntryStruct> & v, EntryStruct entry) {
     int i, found = 0;
-    vector<Entry> temp;
+    vector<EntryStruct> temp;
     temp = v;
     // If name is in the vector, increase duration by new entry duration
     // else add it to the vector
@@ -115,7 +116,7 @@ vector<Entry> DataAnalyser::buildArray(vector<Entry> & v, Entry entry) {
     return temp;
 }
 
-DataAnalyser::analyse(vector<Entry> & v) {
+void DataAnalyser::analyse(vector<EntryStruct> & v) {
     string swear[] = {"dumb", "stupid", "donkey"};
     int numswear[] = {0, 0, 0};
     string unprod[] = {"steam", "uplay", "origin", "solitaire"};
@@ -123,11 +124,11 @@ DataAnalyser::analyse(vector<Entry> & v) {
     myfile.open("../email_manager/out.txt");
     int totalLog = 0; 
     int hours, minutes, seconds; 
-    vector<Entry> temp;
-    Entry top[5];
+    vector<EntryStruct> temp;
+	EntryStruct top[5];
     temp = v;
     int i, j;
-    Entry ent;
+	EntryStruct ent;
     ent.name = "null";
     ent.duration = 0;
     ent.text = "null";
@@ -245,6 +246,7 @@ DataAnalyser::analyse(vector<Entry> & v) {
     }
 }
 
+/*
 // testing 
 int main() {
     string json_str1, json_str2, json_str3, json_str4, json_str5, json_str6;
@@ -298,8 +300,8 @@ int main() {
     json_str6 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
 
     DataAnalyser data;
-    vector<Entry> vect; 
-    Entry ent;
+    vector<EntryStruct> vect;
+	EntryStruct ent;
     ent = data.buildEntryFromJsonString(json_str1);
     vect = data.buildArray(vect, ent);
     ent = data.buildEntryFromJsonString(json_str2);
@@ -314,3 +316,4 @@ int main() {
     vect = data.buildArray(vect, ent);
     data.analyse(vect);
 }
+*/

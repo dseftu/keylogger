@@ -2,8 +2,7 @@
     Dallas Seroski
     Data Analyser
 ************************************/
-
-#include "..\data_manager\DataManager.h"
+#pragma once
 #include "..\data_manager\Entry.h"
 
 #include <string>
@@ -18,20 +17,14 @@ using std::string;
 using std::vector;
 using namespace std;
 
-struct Entry {
-    string name;
-    string text;
-    int duration;
-};
-
-struct myclass {
-    bool operator() (Entry i, Entry j) { return (j.duration < i.duration);}
-} comp;
-
 class DataAnalyser {
     public:
-        Entry buildEntryFromJsonString(string json_str);
-        vector<Entry> buildArray(vector<Entry> & v, Entry entry);
-        analyse(vector<Entry> & v);
-        
+		EntryStruct buildEntryFromJsonString(string json_str);
+        vector<EntryStruct> buildArray(vector<EntryStruct> & v, EntryStruct entry);
+        void analyse(vector<EntryStruct> & v);        
 };
+
+
+struct myclass {
+	bool operator() (EntryStruct i, EntryStruct j) { return (j.duration < i.duration); }
+} comp;

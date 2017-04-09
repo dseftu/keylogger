@@ -1,33 +1,8 @@
+// Eric
 #include "DataManager.h"
+
 EncryptionManager em;
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include "../encryption_manager/EncryptionManager.cpp"
-#include "../data_analysis/DataAnalysis.cpp"
-#include "Entry.cpp"
-#include <cstring>
-#include <vector>
-using std::string;
-using std::vector;
-
-#define BUFFER_LENGTH 16
-
-struct EntryStruct {
-    string name;
-    string text;
-    int duration;
-};
-
-class DataManager {
-    public:
-        bool put(Entry);
-        DataManager();
-    private:
-        bool DumpDay();
-        void init();
-};
 
 DataManager::DataManager() {
     em = EncryptionManager();
@@ -39,18 +14,18 @@ params:
 returns: 
 */
 
-DataManager::put(Entry entry) {
-    ifstream outfile;
+void DataManager::put(Entry entry) {
+
+	ofstream outfile;
+	
     outfile.open("outfile.bin", ios::app | ios::binary);
     string entryString = entry.toString();
     
     int len = entryString.length();
-    unsigned char* ciphertext[len];
+	unsigned char* ciphertext = new unsigned char[len];
     // ciphertext = entryString;
     em.encrypt(entryString, ciphertext, len);
-    outfile.write(ciphertext, len);
-
-    return true;
+    outfile.write((const char*)ciphertext, len);
 }
 
 /*
@@ -59,7 +34,8 @@ params: none
 returns: none
 */
 void DataManager::DumpDay() {
-    ofstream outfile;
+    ifstream infile;
+	
     // outfile.open("outfile.bin", ios::app);
     string line;
     string out_json;
@@ -67,9 +43,9 @@ void DataManager::DumpDay() {
     ifstream outfile("outfile.bin", ios::binary | ios::ate);
     unsigned char* ciphertext[BUFFER_LENGTH];
     vector<Entry> entryVector;
-    if(outfile.is_open()) {
-        size_t file_length = outfile.tellg();
-        outfile.seekg(0, ios::beg);
+    if(infile.is_open()) {
+        size_t file_length = infile.tellg();
+		infile.seekg(0, ios::beg);
 
         // main loop, goes through the file decrypting 16 bytes at a time.
         for(size_t i = 0; i < file_length; i += BUFFER_LENGTH){
@@ -95,7 +71,7 @@ void DataManager::DumpDay() {
                     
                     // send the line to DataAnalysis
                     EntryStruct entry = DataAnalysis.buildEntryFromJsonString(out_json);             
-                    entryVector = DataAnalysis.buildArray(entryVector, entry)   
+					entryVector = DataAnalysis.buildArray(entryVector, entry);
                 }
             }
         }

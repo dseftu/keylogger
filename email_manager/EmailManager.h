@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <conio.h>
@@ -48,4 +49,4 @@ void error_handler(HPDF_STATUS, HPDF_STATUS, void*);
 void encodeblock(unsigned char[3], unsigned char[4], int);
 void encode(FILE, unsigned char *, int);
 size_t read_file();
-static size_t fileBuf_source(void, size_t, size_t, void *);
+static size_t fileBuf_source(void*, size_t, size_t, void *);

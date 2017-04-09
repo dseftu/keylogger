@@ -31,7 +31,7 @@ void pause(int dur);
 DWORD WINAPI mythread(LPVOID lpParameter);
 
 // function triggered whenever a window becomes active
-void HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime);
+void CALLBACK HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime);
 
 // function to start active window listener
 void getWindows();
