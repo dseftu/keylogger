@@ -28,7 +28,6 @@ void DataManager::put(Entry entry) {
     em.encrypt(entryString, ciphertext, len);
 	outfile.write((const char*)&ciphertext[0], len);
 	outfile.flush();
-
 	outfile.close();
 }
 
@@ -38,14 +37,14 @@ params: none
 returns: none
 */
 void DataManager::DumpDay() {
-    ifstream infile;
+    ifstream infile("outfile.bin", ios::binary | ios::ate);
 	DataAnalyser da;
 	
     // outfile.open("outfile.bin", ios::app);
     string line;
     string out_json;
     int len;
-    ifstream outfile("outfile.bin", ios::binary | ios::ate);
+    
 	unsigned char* ciphertext = new unsigned char[BUFFER_LENGTH];
     vector<EntryStruct> entryVector;
     if(infile.is_open()) {
@@ -54,7 +53,7 @@ void DataManager::DumpDay() {
 
         // main loop, goes through the file decrypting 16 bytes at a time.
         for(size_t i = 0; i < file_length; i += BUFFER_LENGTH){
-            outfile.read((char*)ciphertext, BUFFER_LENGTH);            
+			infile.read((char*)ciphertext, BUFFER_LENGTH);
             line += em.decrypt(ciphertext, BUFFER_LENGTH);;
             // looks to see if there is a opening and closing curly brace {}
             len = line.length();
@@ -79,7 +78,7 @@ void DataManager::DumpDay() {
                 }
             }
         }
-        outfile.close();
+		infile.close();
     }
     else {
         cout << "Unable to open file";
