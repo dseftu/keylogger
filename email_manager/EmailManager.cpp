@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <conio.h>
@@ -6,7 +7,8 @@
 #include <iomanip>
 #include <sstream>
 #include "curl\curl.h"
-#include "libharu\hpdf.h"
+#include "libharu\hpdf.h" 
+
 
 
 using namespace std;
@@ -17,10 +19,11 @@ using namespace std;
 //#define TO      "<TheManager117@gmail.com>" //don't need password for to
 #define FILENAME "report.pdf"
 
+
 struct fileBuf_upload_status
 {
 	int lines_read;
-};
+};  
 
 //Globals
 static const int CHARS = 76;     //Sending 54 chararcters at a time with \r , \n and \0 it becomes 57
@@ -33,15 +36,16 @@ string totalLT, prodLT, unprodLT, prodScore;
 string prog1, prog2, prog3, prog4, prog5;
 HPDF_REAL p1, p2, p3, p4, p5;
 string swear[200], swearFreq[200];
-int numSwears=0;
+int numSwears = 0;
 char* TO;
+
 
 class EmailManager
 {
-	public:
-		void readAnalysisResults();
-		void createPDF();
-		void emailPDF();
+public:
+	void readAnalysisResults();
+	void createPDF();
+	void emailPDF();
 };
 
 
@@ -89,7 +93,7 @@ size_t read_file()
 	char key = ' ';
 
 	//Open the file and make sure it exists
-	hFile = fopen(FILENAME, "rb");
+	hFile = fopen("./email_manager/" FILENAME, "rb");
 	if (!hFile) {
 		cout << "File not found!!!" << endl;
 		_getch();
@@ -122,8 +126,8 @@ size_t read_file()
 	time_t now = time(0);
 	tm *ltm = localtime(&now);
 	theDate = to_string(ltm->tm_mon + 1) + "/" +
-		      to_string(ltm->tm_mday) + "/" +
-		      to_string(ltm->tm_year + 1900);
+		to_string(ltm->tm_mday) + "/" +
+		to_string(ltm->tm_year + 1900);
 
 	//string to char
 	string temp = "Subject: Danklogger - " + theDate + " report for " + employee + "\r\n";
@@ -195,25 +199,30 @@ void EmailManager::readAnalysisResults()
 	float percent;
 
 	ifstream config;
-	config.open("config.txt");
+	config.open("./email_manager/config.txt");
+	if (!config.is_open())
+		cout << "can't open config file" << endl;
+
 	config >> temp;
 	employee = employee + temp + " ";
 	config >> temp;
 	employee = employee + temp;
-
+	
 	temp.clear();
 	config >> email;
 	email = "<" + email + ">";
-	TO = new char[email.length()+1];
+	TO = new char[email.length() + 1];
 	strcpy(TO, email.c_str());
 	config.close();
-	
+
 	ifstream results;
-	results.open("out.txt");
+	results.open("./email_manager/out.txt");
+	if (!results.is_open())
+		cout << "can't open out file" << endl;
 
 	temp.clear();
 	results >> temp;
-	totalLT = totalLT + temp + "h ";	
+	totalLT = totalLT + temp + "h ";
 	results >> temp;
 	totalLT = totalLT + temp + "m ";
 	results >> temp;
@@ -244,7 +253,7 @@ void EmailManager::readAnalysisResults()
 	prog1 = temp;
 	results >> percent;
 	p1 = percent;
-	
+
 	temp.clear();
 	results >> temp;
 	prog2 = temp;
@@ -276,19 +285,19 @@ void EmailManager::readAnalysisResults()
 		results >> swear[i];
 		results >> swearFreq[i];
 
-		if (results.eof())
-			break;
-
 		numSwears++;
 		i++;
+		
+		if (results.eof())
+			break;
 	}
 
 	/*for (i = 0; i < 2; i++)
 	{
-		cout << swear[i] << endl;
-		cout << swearFreq[i] << endl;
-	}
-	//cout << numSwears << endl; */
+	cout << swear[i] << endl;
+	cout << swearFreq[i] << endl;
+	}*/
+	//cout << numSwears << endl; 
 
 	results.close();
 
@@ -329,7 +338,7 @@ void EmailManager::createPDF()
 	HPDF_Page_MoveTo(page1, 142, 765);  //para2 is how far from left margin (x). para3 is (y)
 	HPDF_Page_LineTo(page1, 453, 765);  //para2 is how long line is
 	HPDF_Page_Stroke(page1);
-	
+
 	//Employee tab
 	string tempEmp = "Employee: " + employee;
 	char* emp = new char[tempEmp.length() + 1];
@@ -343,8 +352,8 @@ void EmailManager::createPDF()
 	time_t now = time(0);
 	tm *ltm = localtime(&now);
 	theDate = to_string(ltm->tm_mon + 1) + "/" +
-			  to_string(ltm->tm_mday) + "/" +
-			  to_string(ltm->tm_year + 1900);
+		to_string(ltm->tm_mday) + "/" +
+		to_string(ltm->tm_year + 1900);
 
 	string temp = "Date: " + theDate;
 	char* date = new char[temp.length() + 1];
@@ -405,7 +414,7 @@ void EmailManager::createPDF()
 	/*
 	1 - adjust y coordinate
 	2 - adjust x coordinate
-	In Arc(page1, x, y, circleSize, angle1, angle2). 
+	In Arc(page1, x, y, circleSize, angle1, angle2).
 	each section will build off each other. start at 0, end at 360
 	suppose 1st-45%, 2nd-25%, 3rd-15%, 4th-10%, 5th-5%
 	*/
@@ -416,7 +425,7 @@ void EmailManager::createPDF()
 	HPDF_Page_MoveTo(page1, 170, 400);
 	HPDF_Page_LineTo(page1, 170, 460);
 	//HPDF_Page_Arc(page1, 170, 400, 100, 0, 360*.45);
-	HPDF_Page_Arc(page1, 170, 400, 100, 0, 360*p1);
+	HPDF_Page_Arc(page1, 170, 400, 100, 0, 360 * p1);
 	pos = HPDF_Page_GetCurrentPos(page1);
 	HPDF_Page_LineTo(page1, 170, 400);
 	HPDF_Page_Fill(page1);
@@ -426,7 +435,7 @@ void EmailManager::createPDF()
 	HPDF_Page_MoveTo(page1, 170, 400);
 	HPDF_Page_LineTo(page1, pos.x, pos.y);
 	//HPDF_Page_Arc(page1, 170, 400, 100, 360*.45, 360*.70);
-	HPDF_Page_Arc(page1, 170, 400, 100, 360*p1, 360*(p1+p2));
+	HPDF_Page_Arc(page1, 170, 400, 100, 360 * p1, 360 * (p1 + p2));
 	pos = HPDF_Page_GetCurrentPos(page1);
 	HPDF_Page_LineTo(page1, 170, 400);
 	HPDF_Page_Fill(page1);
@@ -436,7 +445,7 @@ void EmailManager::createPDF()
 	HPDF_Page_MoveTo(page1, 170, 400);
 	HPDF_Page_LineTo(page1, pos.x, pos.y);
 	//HPDF_Page_Arc(page1, 170, 400, 100, 360*.70, 360*.85);
-	HPDF_Page_Arc(page1, 170, 400, 100, 360*(p1+p2), 360*(p1+p2+p3));
+	HPDF_Page_Arc(page1, 170, 400, 100, 360 * (p1 + p2), 360 * (p1 + p2 + p3));
 	pos = HPDF_Page_GetCurrentPos(page1);
 	HPDF_Page_LineTo(page1, 170, 400);
 	HPDF_Page_Fill(page1);
@@ -446,7 +455,7 @@ void EmailManager::createPDF()
 	HPDF_Page_MoveTo(page1, 170, 400);
 	HPDF_Page_LineTo(page1, pos.x, pos.y);
 	//HPDF_Page_Arc(page1, 170, 400, 100, 360*.85, 360*.95);
-	HPDF_Page_Arc(page1, 170, 400, 100, 360*(p1+p2+p3), 360*(p1+p2+p3+p4));
+	HPDF_Page_Arc(page1, 170, 400, 100, 360 * (p1 + p2 + p3), 360 * (p1 + p2 + p3 + p4));
 	pos = HPDF_Page_GetCurrentPos(page1);
 	HPDF_Page_LineTo(page1, 170, 400);
 	HPDF_Page_Fill(page1);
@@ -456,11 +465,11 @@ void EmailManager::createPDF()
 	HPDF_Page_MoveTo(page1, 170, 400);
 	HPDF_Page_LineTo(page1, pos.x, pos.y);
 	//HPDF_Page_Arc(page1, 170, 400, 100, 360*.95, 360);
-	HPDF_Page_Arc(page1, 170, 400, 100, 360*(p1+p2+p3+p4), 360);
+	HPDF_Page_Arc(page1, 170, 400, 100, 360 * (p1 + p2 + p3 + p4), 360);
 	pos = HPDF_Page_GetCurrentPos(page1);
 	HPDF_Page_LineTo(page1, 170, 400);
 	HPDF_Page_Fill(page1);
-	
+
 
 	stringstream stream1;
 	stringstream stream2;
@@ -474,7 +483,7 @@ void EmailManager::createPDF()
 	HPDF_Page_SetRGBFill(page1, 0, .322, .816);
 	HPDF_Page_Rectangle(page1, 325, 465, 25, 25);
 	HPDF_Page_FillStroke(page1);
-	stream1 << setprecision(0) << p1*100;
+	stream1 << setprecision(0) << p1 * 100;
 	string temp1 = prog1 + " - " + stream1.str() + "%";
 	char* prog1 = new char[temp1.length() + 1];
 	strcpy(prog1, temp1.c_str());
@@ -518,7 +527,7 @@ void EmailManager::createPDF()
 	HPDF_Page_BeginText(page1);
 	HPDF_Page_TextOut(page1, 360, 350, prog4);
 	HPDF_Page_EndText(page1);
-	
+
 	HPDF_Page_SetRGBFill(page1, .290, .275, .247);
 	HPDF_Page_Rectangle(page1, 325, 305, 25, 25);
 	HPDF_Page_FillStroke(page1);
@@ -530,7 +539,7 @@ void EmailManager::createPDF()
 	HPDF_Page_BeginText(page1);
 	HPDF_Page_TextOut(page1, 360, 310, prog5);
 	HPDF_Page_EndText(page1);
-	
+
 
 	//go back to black font and 1px line
 	HPDF_Page_SetRGBFill(page1, 0, 0, 0);
@@ -543,7 +552,7 @@ void EmailManager::createPDF()
 	HPDF_Page_TextOut(page1, 50, 200, words);
 	HPDF_Page_EndText(page1);
 	HPDF_Page_MoveTo(page1, 50, 195);
-	HPDF_Page_LineTo(page1, 282, 195); 
+	HPDF_Page_LineTo(page1, 282, 195);
 	HPDF_Page_Stroke(page1);
 
 	HPDF_Page_SetFontAndSize(page1, font, 14);
@@ -557,7 +566,7 @@ void EmailManager::createPDF()
 		//cout << tempy << endl;
 		//cout << tempy.length() + 1 << endl;
 
-		HPDF_Page_BeginText(page1);	
+		HPDF_Page_BeginText(page1);
 		if (xCoord + tempy.length()*6.5 > 550)
 		{
 			//start a newline, then print
@@ -574,10 +583,10 @@ void EmailManager::createPDF()
 		HPDF_Page_EndText(page1);
 	}
 
-	HPDF_SaveToFile(pdf, FILENAME);
+	HPDF_SaveToFile(pdf, "./email_manager/" FILENAME);
 	HPDF_Free(pdf);
 
-	emailPDF();
+	//emailPDF();
 }
 
 void EmailManager::emailPDF()
