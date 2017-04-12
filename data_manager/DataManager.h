@@ -22,7 +22,6 @@ class DataManager {
         void put(Entry);
         DataManager();
 		void DumpDay();
-    private:        
-        void init();
+		void init();
 };
 

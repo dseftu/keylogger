@@ -21,11 +21,13 @@ void DataManager::put(Entry entry) {
 	
     outfile.open("outfile.bin", ios::app | ios::binary);
     string entryString = entry.toString();
-    
+	cout << entryString << endl;
+
     int len = entryString.length();
 	unsigned char* ciphertext = new unsigned char[len+16];
     // ciphertext = entryString;
     em.encrypt(entryString, ciphertext, len);
+	cout << ciphertext;	
 	outfile.write((const char*)&ciphertext[0], len);
 	outfile.flush();
 	outfile.close();
@@ -53,10 +55,13 @@ void DataManager::DumpDay() {
 
         // main loop, goes through the file decrypting 16 bytes at a time.
         for(size_t i = 0; i < file_length; i += BUFFER_LENGTH){
+			cout << "reading chars from file" << endl;
 			infile.read((char*)ciphertext, BUFFER_LENGTH);
-            line += em.decrypt(ciphertext, BUFFER_LENGTH);;
+            line += em.decrypt(ciphertext, BUFFER_LENGTH);
+			cout << line << endl;
             // looks to see if there is a opening and closing curly brace {}
             len = line.length();
+			cout << "Line Length: " << len << endl;
             for(size_t j = 0; j < len; j++) {
                 bool open_flag = false;
                 size_t open_pos;

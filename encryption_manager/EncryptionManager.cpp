@@ -47,6 +47,7 @@ void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int
     AES_KEY enc_key;
     AES_set_encrypt_key(key, 256, &enc_key);
 
+	cout << "BEGIN ENCRYPTION" << endl;
     // encrypt in 16 block chunkts
     for (int i = 0; i <= iterations; i++){
 
@@ -67,6 +68,8 @@ void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int
         for (int j = 0; j < 16; j++)
             ciphertext[(i*16)+j]=enc_out[j];
     }
+
+	cout << "END ENCRYPTION" << endl;
 }
 
 /*
@@ -106,6 +109,7 @@ string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
         // if we go past the len, insert nulls so that the
         // string can still be fancy
         for (int j = 0; j < 16; j++){
+			cout << "j = " << j << ", i = " << i << ", char = " << result[j] << endl;
             if ((i*16)+j >= len)
                 result[(i*16)+j] = 0;
             else

