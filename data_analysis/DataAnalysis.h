@@ -24,6 +24,6 @@ class DataAnalyser {
         void analyse(vector<EntryStruct> & v);        
 };
 
-struct myclass {
+static struct myclass {
 	bool operator() (EntryStruct i, EntryStruct j) { return (j.duration < i.duration); }
 } comp;

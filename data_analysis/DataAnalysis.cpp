@@ -100,12 +100,12 @@ EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
 }
 
 vector<EntryStruct> DataAnalyser::buildArray(vector<EntryStruct> & v, EntryStruct entry) {
-    int i, found = 0;
+    int found = 0;
     vector<EntryStruct> temp;
     temp = v;
     // If name is in the vector, increase duration by new entry duration
     // else add it to the vector
-    for(i = 0; i < temp.size(); i++) {
+    for(size_t i = 0; i < temp.size(); i++) {
         if(temp[i].name == entry.name) {
             temp[i].duration += entry.duration;
             return temp;
@@ -124,11 +124,10 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     ofstream myfile;
     myfile.open("../email_manager/out.txt");
     int totalLog = 0; 
-    int hours, minutes, seconds; 
+	int hours, minutes; //seconds; 
     vector<EntryStruct> temp;
 	EntryStruct top[5];
     temp = v;
-    int i, j;
 	EntryStruct ent;
     ent.name = "null";
     ent.duration = 0;
@@ -136,23 +135,23 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
 
     // Sorts vector based on duration
     sort(temp.begin(), temp.end(), comp);
-    for(i = 0; i < 5; i++) {
+    for(size_t i = 0; i < 5; i++) {
         top[i] = temp[i];
     }
 
     // Counts swear words
     string str;
     int found;
-    for(i = 0; i < temp.size(); i++) {
+    for(size_t i = 0; i < temp.size(); i++) {
         str = temp[i].text;
-        for(j = 0; j < sizeof(swear)/sizeof(swear[0]); j++) {
+        for(size_t j = 0; j < sizeof(swear)/sizeof(swear[0]); j++) {
             found = str.find(swear[j]);
             if(found > 0) numswear[j]++;
         }
     }
 
     // Adds up total Log Time
-    for(i = 0; i < temp.size(); i++)
+    for(size_t i = 0; i < temp.size(); i++)
         totalLog += temp[i].duration;
 
     // Converts totalLog Time to H M S and sends it to file
@@ -165,9 +164,9 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     int unprodTime = 0;
     int prodTime = 0;
     // Gets unproductive time
-    for(i = 0; i < temp.size(); i++) {
+    for(size_t i = 0; i < temp.size(); i++) {
         str = temp[i].name;
-        for(j = 0; j < sizeof(unprod)/sizeof(unprod[0]); j++) {
+        for(size_t j = 0; j < sizeof(unprod)/sizeof(unprod[0]); j++) {
             found = str.find(unprod[j]);
             if(found != -1)
                 unprodTime += temp[i].duration;
@@ -200,7 +199,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     int top5Durations = 0;
 
     // Sets top 5 durations
-    for(i = 0; i < 5; i++) {
+    for(size_t i = 0; i < 5; i++) {
         top5Durations += top[i].duration;
     }
     
@@ -223,12 +222,12 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     top5 = roundf(top5 * 100) / 100;
     while((float)(top1 + top2 + top3 + top4 + top5) > 1.0) {
         if(top5 < .02)
-            top4 = top4 - .01;
+            top4 = top4 - (float).01;
         else
-            top5 = top5 - .01;
+            top5 = top5 - (float).01;
     }
     while((float)(top1 + top2 + top3 + top4 + top5) < 1.0) {
-        top5 = top5 + .01;
+        top5 = top5 + (float).01;
     }
 
     // Outputs the top 5 programs and percentages
@@ -239,7 +238,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     myfile << top[4].name << "\n" << top5 << "\n";
 
     // Prints out swear words and how many times they appear to file
-    for(i = 0; i < 3; i++) { 
+    for(size_t i = 0; i < 3; i++) { 
         if(numswear[i] == 0)
             continue;
         else

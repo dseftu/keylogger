@@ -1,78 +1,16 @@
-﻿  stdafx.cpp
-  DataAnalysis.cpp
-data_analysis\DataAnalysis.cpp(108): warning C4018: '<': signed/unsigned mismatch
-data_analysis\DataAnalysis.cpp(144): warning C4018: '<': signed/unsigned mismatch
-data_analysis\DataAnalysis.cpp(153): warning C4018: '<': signed/unsigned mismatch
-data_analysis\DataAnalysis.cpp(166): warning C4018: '<': signed/unsigned mismatch
-data_analysis\DataAnalysis.cpp(224): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-data_analysis\DataAnalysis.cpp(226): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-data_analysis\DataAnalysis.cpp(229): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-data_analysis\DataAnalysis.cpp(125): warning C4101: 'seconds': unreferenced local variable
+﻿  DataAnalysis.cpp
   DataManager.cpp
 data_manager\DataManager.cpp(53): warning C4244: 'initializing': conversion from 'std::streamoff' to '::size_t', possible loss of data
 data_manager\DataManager.cpp(65): warning C4018: '<': signed/unsigned mismatch
   Entry.cpp
   EmailManager.cpp
-email_manager\EmailManager.cpp(576): warning C4244: '=': conversion from 'double' to 'HPDF_REAL', possible loss of data
-email_manager\EmailManager.cpp(581): warning C4244: '=': conversion from 'double' to 'HPDF_REAL', possible loss of data
   EncryptionManager.cpp
   LoggingManager.cpp
 logging_manager\LoggingManager.cpp(91): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+  stdafx.cpp
   Generating Code...
-c:\users\cjaen\desktop\keylogger\logging_manager\loggingmanager.cpp(67): warning C4715: 'GetProcessName': not all control paths return a value
+c:\users\vienhang\documents\github\keylogger\logging_manager\loggingmanager.cpp(67): warning C4715: 'GetProcessName': not all control paths return a value
   .NETFramework,Version=v4.0.AssemblyAttributes.cpp
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
   DataAnalysis.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
-DataManager.obj : warning LNK4006: "struct myclass comp" (?comp@@3Umyclass@@A) already defined in DataAnalysis.obj; second definition ignored
-LoggingManager.obj : warning LNK4006: "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall Entry::toString(void)" (?toString@Entry@@QAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) already defined in Entry.obj; second definition ignored
-LoggingManager.obj : warning LNK4006: "struct myclass comp" (?comp@@3Umyclass@@A) already defined in DataAnalysis.obj; second definition ignored
-LoggingManager.obj : warning LNK4006: "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall Entry::toString(void)" (?toString@Entry@@$$FQAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) already defined in Entry.obj; second definition ignored
-C:\Users\cjaen\Desktop\keylogger\Debug\danklogger.exe : warning LNK4088: image being generated due to /FORCE option; image may not run
-libhpdfsd.lib(hpdf_annotation.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_annotation.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_array.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_array.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_binary.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_binary.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_boolean.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_boolean.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_catalog.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_catalog.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_destination.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_destination.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_dict.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_dict.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_doc.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_doc.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_encoder.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_encoder.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_encrypt.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_encrypt.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_encryptdict.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_encryptdict.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_error.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_error.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_ext_gstate.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_ext_gstate.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_font_cid.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_font_cid.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_font_tt.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_font_tt.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_font_type1.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_font_type1.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_font.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_font.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_fontdef_base14.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_fontdef_base14.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_fontdef_cid.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_fontdef_cid.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_fontdef_tt.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_fontdef_tt.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_fontdef_type1.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_fontdef_type1.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_fontdef.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_fontdef.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_gstate.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_gstate.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_image_ccitt.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_image_ccitt.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_image.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_image.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_info.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_info.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_list.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_list.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_mmgr.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_mmgr.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_name.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_name.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_namedict.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_namedict.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_null.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_null.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_number.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_number.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_objects.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_objects.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_outline.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_outline.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_page_label.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_page_label.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_page_operator.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_page_operator.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_pages.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_pages.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_real.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_real.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_streams.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_streams.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_string.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_string.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_u3d.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_u3d.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_utils.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_utils.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_xref.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_xref.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_3dmeasure.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_3dmeasure.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-libhpdfsd.lib(hpdf_exdata.obj) : warning LNK4099: PDB 'libhpdfs.pdb' was not found with 'libhpdfsd.lib(hpdf_exdata.obj)' or at 'C:\Users\cjaen\Desktop\keylogger\Debug\libhpdfs.pdb'; linking object as if no debug info
-  danklogger.vcxproj -> C:\Users\cjaen\Desktop\keylogger\Debug\danklogger.exe
-  danklogger.vcxproj -> C:\Users\cjaen\Desktop\keylogger\Debug\danklogger.pdb (Partial PDB)
+  danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.exe
+  danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.pdb (Partial PDB)

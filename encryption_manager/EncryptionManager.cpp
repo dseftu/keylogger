@@ -3,21 +3,18 @@
 using namespace System;
 using namespace System::Runtime::InteropServices;
 
-[DllImport("libcrypto-1_1.dll")]
-extern int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
-	AES_KEY *key);
 
 [DllImport("libcrypto-1_1.dll")]
-extern void AES_encrypt(const unsigned char *in, unsigned char *out,
-	const AES_KEY *key);
+extern int AES_set_encrypt_key(const unsigned char *userKey, const int bits, AES_KEY *key);
 
 [DllImport("libcrypto-1_1.dll")]
-extern void AES_decrypt(const unsigned char *in, unsigned char *out,
-	const AES_KEY *key);
+extern void AES_encrypt(const unsigned char *in, unsigned char *out, const AES_KEY *key);
 
 [DllImport("libcrypto-1_1.dll")]
-extern int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
-	AES_KEY *key);
+extern void AES_decrypt(const unsigned char *in, unsigned char *out, const AES_KEY *key);
+
+[DllImport("libcrypto-1_1.dll")]
+extern int AES_set_decrypt_key(const unsigned char *userKey, const int bits, AES_KEY *key);
 
 
 // this is typically not a great thing to do.
@@ -109,7 +106,7 @@ string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
         // if we go past the len, insert nulls so that the
         // string can still be fancy
         for (int j = 0; j < 16; j++){
-			cout << "j = " << j << ", i = " << i << ", char = " << result[j] << endl;
+			//cout << "j = " << j << ", i = " << i << ", char = " << result[j] << endl;
             if ((i*16)+j >= len)
                 result[(i*16)+j] = 0;
             else

@@ -573,12 +573,12 @@ void EmailManager::createPDF()
 			xCoord = 50;
 			yCoord -= 25;
 			HPDF_Page_TextOut(page1, xCoord, yCoord, finalSwear);
-			xCoord = xCoord + tempy.length()*6.5;
+			xCoord = xCoord + (HPDF_REAL)(tempy.length()*6.5);
 		}
 		else
 		{
 			HPDF_Page_TextOut(page1, xCoord, yCoord, finalSwear);
-			xCoord = xCoord + tempy.length()*6.5;
+			xCoord = xCoord + (HPDF_REAL)(tempy.length()*6.5);
 		}
 		HPDF_Page_EndText(page1);
 	}
