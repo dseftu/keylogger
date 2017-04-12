@@ -118,7 +118,9 @@ vector<EntryStruct> DataAnalyser::buildArray(vector<EntryStruct> & v, EntryStruc
 void DataAnalyser::analyse(vector<EntryStruct> & v) {
     string swear[] = {"dumb", "stupid", "donkey"};
     int numswear[] = {0, 0, 0};
-    string unprod[] = {"steam", "uplay", "origin", "solitaire"};
+    string unprod[] = {"steam", "uplay", "origin", "solitaire", "minecraft", "half-life 2", "portal", "civilization 5", "defcon", "torn", "868-hack", "initium", "minesweeper", "pinball", "dota 2", "League of Legends",
+                       "hearthstone", "Heroes Of the storm", "team fortress 2", "pinball fx2", "visual pinball", "future pinball", "iji", "caveman", "rust", "battlegrounds", "facebook", "twitter", "America's Army: Special Forces",
+                       "gta 2", "gta 3", "gta 4", "gta 5"};
     ofstream myfile;
     myfile.open("../email_manager/out.txt");
     int totalLog = 0; 
@@ -143,7 +145,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     int found;
     for(i = 0; i < temp.size(); i++) {
         str = temp[i].text;
-        for(j = 0; j < 3; j++) {
+        for(j = 0; j < sizeof(swear)/sizeof(swear[0]); j++) {
             found = str.find(swear[j]);
             if(found > 0) numswear[j]++;
         }
@@ -165,7 +167,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     // Gets unproductive time
     for(i = 0; i < temp.size(); i++) {
         str = temp[i].name;
-        for(j = 0; j < 4; j++) {
+        for(j = 0; j < sizeof(unprod)/sizeof(unprod[0]); j++) {
             found = str.find(unprod[j]);
             if(found != -1)
                 unprodTime += temp[i].duration;
