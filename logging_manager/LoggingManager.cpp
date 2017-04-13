@@ -1,5 +1,6 @@
 ﻿
 #include "LoggingManager.h"
+#include <crtdbg.h>
 
 DataManager dataManager = DataManager();
 EmailManager emailManager = EmailManager();
@@ -112,11 +113,12 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
             if(timeToProcess && !sendReport) {
                 // call dumpday
                 dataManager.DumpDay();
-
                 emailManager.readAnalysisResults();
-                
                 sendReport = true;
-            } else if(!timeToProcess) {
+				break;
+
+            } 
+			else if(!timeToProcess) {
                 sendReport = false;
             }
 
@@ -213,9 +215,12 @@ void init() {
     getWindows();
 }
 
+
 //int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 int main()
-{
+{	
+	//_CrtSetDbgFlag(_CRTDBG_CHECK_ALWAYS_DF);
+
 	init();
 	return 0;
 }

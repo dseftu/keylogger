@@ -282,6 +282,9 @@ void EmailManager::readAnalysisResults()
 	int i = 0;
 	while (true)
 	{
+		if (results.eof())
+			break;
+
 		results >> swear[i];
 		results >> swearFreq[i];
 
@@ -297,7 +300,7 @@ void EmailManager::readAnalysisResults()
 	cout << swear[i] << endl;
 	cout << swearFreq[i] << endl;
 	}*/
-	//cout << numSwears << endl; 
+	cout << numSwears << endl; 
 
 	results.close();
 
@@ -558,6 +561,17 @@ void EmailManager::createPDF()
 	HPDF_Page_SetFontAndSize(page1, font, 14);
 	HPDF_REAL xCoord = 50;
 	HPDF_REAL yCoord = 160;
+
+	if (numSwears == 0)
+	{
+		string s = "None";
+		char* none = new char[s.length() + 1];
+		strcpy(none, s.c_str());
+		HPDF_Page_BeginText(page1);
+		HPDF_Page_TextOut(page1, xCoord, yCoord, none);
+		HPDF_Page_EndText(page1);
+	}
+
 	for (int i = 0; i < numSwears; i++)
 	{
 		string tempy = swear[i] + "(" + swearFreq[i] + "x),";
@@ -586,7 +600,7 @@ void EmailManager::createPDF()
 	HPDF_SaveToFile(pdf, "./email_manager/" FILENAME);
 	HPDF_Free(pdf);
 
-	//emailPDF();
+	emailPDF();
 }
 
 void EmailManager::emailPDF()

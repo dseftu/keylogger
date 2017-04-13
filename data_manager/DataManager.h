@@ -9,7 +9,6 @@
 #include "..\data_manager\Entry.h"
 #include "rapidjson\document.h"
 
-
 using std::string;
 using std::vector;
 

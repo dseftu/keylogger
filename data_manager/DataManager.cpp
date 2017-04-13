@@ -6,7 +6,6 @@ EncryptionManager em;
 
 DataManager::DataManager() {
     em = EncryptionManager();
-
 }
 
 /*
@@ -14,21 +13,23 @@ description: appends an encrypted entry to the end of outfile.bin
 params: 
 returns: 
 */
-
 void DataManager::put(Entry entry) {
-
 	ofstream outfile;
 	
     outfile.open("outfile.bin", ios::app | ios::binary);
     string entryString = entry.toString();
 	cout << entryString << endl;
 
+	char* es = new char[entryString.length() + 1];
+	strcpy(es, entryString.c_str());
+
     int len = entryString.length();
-	unsigned char* ciphertext = new unsigned char[len+16];
+	//unsigned char* ciphertext = new unsigned char[len+16];
     // ciphertext = entryString;
-    em.encrypt(entryString, ciphertext, len);
-	cout << ciphertext;	
-	outfile.write((const char*)&ciphertext[0], len);
+    //em.encrypt(entryString, ciphertext, len);
+	//cout << ciphertext;	
+	//outfile.write((const char*)&ciphertext[0], len);
+	outfile.write(es, len);
 	outfile.flush();
 	outfile.close();
 }
@@ -39,10 +40,55 @@ params: none
 returns: none
 */
 void DataManager::DumpDay() {
+
+	//open file with cursor at end. find file length. close file.
     ifstream infile("outfile.bin", ios::binary | ios::ate);
+	int fileLength = infile.tellg();
+	infile.close();
+	cout << fileLength << endl; 
+
+	//open file again, but from start
+	ifstream infile2;
+	infile2.open("outfile.bin");
+
 	DataAnalyser da;
-	
-    // outfile.open("outfile.bin", ios::app);
+	vector<EntryStruct> vect;
+	EntryStruct ent;
+
+	char temp;
+	char curly = '}';
+	string outJson;
+	int count = 0;
+
+	for (int i = 0; i < fileLength; i++)
+	{
+		infile2.get(temp);
+		
+		stringstream ss;
+		ss << temp;
+		string temp2 = ss.str();
+
+		outJson = outJson + temp2;
+		
+		if (temp == curly)
+		{
+			count++;
+			
+			//send Json string to DataAnalysis		
+			ent = da.buildEntryFromJsonString(outJson);
+			vect = da.buildArray(vect, ent);
+
+			cout << outJson << endl << endl;
+			outJson.clear();
+		}
+	}
+	cout << "cnt:" << count << endl;
+	da.analyse(vect);
+	infile2.close();
+
+
+
+	/*
     string line;
     string out_json;
     int len;
@@ -57,7 +103,7 @@ void DataManager::DumpDay() {
         for(size_t i = 0; i < file_length; i += BUFFER_LENGTH){
 			cout << "reading chars from file" << endl;
 			infile.read((char*)ciphertext, BUFFER_LENGTH);
-            line += em.decrypt(ciphertext, BUFFER_LENGTH);
+            //line += em.decrypt(ciphertext, BUFFER_LENGTH);
 			cout << line << endl;
             // looks to see if there is a opening and closing curly brace {}
             len = line.length();
@@ -91,7 +137,9 @@ void DataManager::DumpDay() {
 
     // finally DataAnalysis analyses all the data.
     da.analyse(entryVector);
-    cout << "Successfully dumped days information";
+	*/
+
+	cout << "Successfully dumped days information" << endl;
 }
 
 /*
@@ -104,3 +152,15 @@ void DataManager::init() {
     outfile.open("outfile.bin", ios::out | ios::trunc);
     outfile.close();
 }
+
+
+/*
+int main()
+{
+
+	EmailManager em;
+	em.readAnalysisResults();
+
+	return 0;
+}
+*/

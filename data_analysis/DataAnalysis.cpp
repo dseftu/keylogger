@@ -9,7 +9,6 @@ description: builds an Entry object from a json string
 params: 
 returns: 
 */
-
 EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
     string arr[5000];
     string activeProcess = "", duration, text = "";
@@ -122,7 +121,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
                        "hearthstone", "Heroes Of the storm", "team fortress 2", "pinball fx2", "visual pinball", "future pinball", "iji", "caveman", "rust", "battlegrounds", "facebook", "twitter", "America's Army: Special Forces",
                        "gta 2", "gta 3", "gta 4", "gta 5"};
     ofstream myfile;
-    myfile.open("../email_manager/out.txt");
+    myfile.open("./email_manager/out.txt");
     int totalLog = 0; 
 	int hours, minutes; //seconds; 
     vector<EntryStruct> temp;
@@ -133,12 +132,19 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     ent.duration = 0;
     ent.text = "null";
 
-    // Sorts vector based on duration
+	cout << temp.size() << endl;
+	for (int i = 0; i < temp.size(); i++) {
+		cout << temp[i].name << endl;
+		cout << temp[i].text << endl;
+		cout << temp[i].duration << endl;;
+	}
+
+    // Sorts vector based on duration. must have at least 5 progs in vector or it crashes.
     sort(temp.begin(), temp.end(), comp);
     for(size_t i = 0; i < 5; i++) {
         top[i] = temp[i];
     }
-
+	
     // Counts swear words
     string str;
     int found;
@@ -235,7 +241,21 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     myfile << top[1].name << "\n" << top2 << "\n";
     myfile << top[2].name << "\n" << top3 << "\n";
     myfile << top[3].name << "\n" << top4 << "\n";
-    myfile << top[4].name << "\n" << top5 << "\n";
+	myfile << top[4].name << "\n" << top5 << "\n";
+	/*
+	int flag = 0;
+	for (int i = 0; i < sizeof(numswear)/sizeof(numswear[0]); i++)
+	{
+		if (numswear[i] > 0) {
+			flag = 1;
+		}
+	}
+
+	if(flag==1)
+		myfile << top[4].name << "\n" << top5 << "\n";
+	else
+		myfile << top[4].name << "\n" << top5 << "\n";
+	*/
 
     // Prints out swear words and how many times they appear to file
     for(size_t i = 0; i < 3; i++) { 
@@ -244,6 +264,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
         else
             myfile << swear[i] << endl << numswear[i] << "\n";
     }
+
 }
 
 /*
@@ -258,7 +279,7 @@ int main() {
     duration = "3292";
     text = "This is a  of wh@t the www.facebook.com keylogg3r will be l0gging.";
     json_str1 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
-    
+   
     activeProcess = "explorer";
     procid = "12392";
     startTime = "03/31/2017-00:06:43";
@@ -282,7 +303,7 @@ int main() {
     duration = "850";
     text = "This is a stupid keylogg3r will be l0gging.";
     json_str4 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
-
+	
     activeProcess = "steam";
     procid = "2472";
     startTime = "03/31/2017-00:06:43";
@@ -290,7 +311,7 @@ int main() {
     duration = "5922";
     text = "This is a stupid of wh@t the www.fal be donkey.";
     json_str5 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
-
+	
     activeProcess = "tes";
     procid = "2476";
     startTime = "03/31/2017-00:06:43";
@@ -298,7 +319,7 @@ int main() {
     duration = "10";
     text = "This is a sampl www.facebook.com donkey will be l0gging.";
     json_str6 = "{\"active_process\": \"" + activeProcess + "\", \"process_id\": \"" + procid + "\", \"start_time\": \"" + startTime + "\", \"end_time\": \"" + endTime + "\", \"session_duration\": \"" + duration + "\", \"logged_keystrokes\": \"" + text + "\"},";
-
+	
     DataAnalyser data;
     vector<EntryStruct> vect;
 	EntryStruct ent;
@@ -314,6 +335,9 @@ int main() {
     vect = data.buildArray(vect, ent);
     ent = data.buildEntryFromJsonString(json_str6);
     vect = data.buildArray(vect, ent);
-    data.analyse(vect);
+    data.analyse(vect); 
+
+	//system("pause");
+	return 0;
 }
 */

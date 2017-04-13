@@ -1,16 +1,10 @@
-﻿  DataAnalysis.cpp
-  DataManager.cpp
-data_manager\DataManager.cpp(53): warning C4244: 'initializing': conversion from 'std::streamoff' to '::size_t', possible loss of data
-data_manager\DataManager.cpp(65): warning C4018: '<': signed/unsigned mismatch
-  Entry.cpp
+﻿  DataManager.cpp
+data_manager\DataManager.cpp(46): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
   EmailManager.cpp
-  EncryptionManager.cpp
   LoggingManager.cpp
-logging_manager\LoggingManager.cpp(91): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-  stdafx.cpp
+logging_manager\LoggingManager.cpp(92): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
   Generating Code...
-c:\users\vienhang\documents\github\keylogger\logging_manager\loggingmanager.cpp(67): warning C4715: 'GetProcessName': not all control paths return a value
-  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
+c:\users\vienhang\documents\github\keylogger\logging_manager\loggingmanager.cpp(68): warning C4715: 'GetProcessName': not all control paths return a value
   DataAnalysis.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.exe
   danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.pdb (Partial PDB)
