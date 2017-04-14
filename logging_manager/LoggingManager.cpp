@@ -108,7 +108,7 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
             // get current time and strip date
 			System::DateTime currentTime = System::DateTime().Now;			
 			bool timeToProcess = currentTime.Hour == 18;			
-
+			dataManager.DumpDay();
             // begin processing report at 6:00 PM
             if(timeToProcess && !sendReport) {
                 // call dumpday

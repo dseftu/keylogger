@@ -20,17 +20,15 @@ void DataManager::put(Entry entry) {
     string entryString = entry.toString();
 	cout << entryString << endl;
 
-	char* es = new char[entryString.length() + 1];
+	char* es = new char[entryString.length() + 16];
 	strcpy(es, entryString.c_str());
 
     int len = entryString.length();
-	//unsigned char* ciphertext = new unsigned char[len+16];
-    // ciphertext = entryString;
-    //em.encrypt(entryString, ciphertext, len);
-	//cout << ciphertext;	
-	//outfile.write((const char*)&ciphertext[0], len);
-	outfile.write(es, len);
-	outfile.flush();
+	unsigned char* ciphertext = new unsigned char[len+16];
+    
+    em.encrypt(entryString, ciphertext, len);
+	outfile.write(reinterpret_cast<char*>(&ciphertext), len);
+	
 	outfile.close();
 }
 
@@ -42,10 +40,19 @@ returns: none
 void DataManager::DumpDay() {
 
 	//open file with cursor at end. find file length. close file.
-    ifstream infile("outfile.bin", ios::binary | ios::ate);
+	
+    ifstream infile("test.bin", ios::in | ios::binary|ios::ate);
 	int fileLength = infile.tellg();
+	infile.seekg(0, ios::beg);
+	unsigned char* ciphertext = new unsigned char[fileLength+106];
+	infile.read((char*)(&ciphertext), sizeof ciphertext);
+	string line = em.decrypt(ciphertext, fileLength+32);
+
+
+
+	cout << line << endl;
 	infile.close();
-	cout << fileLength << endl; 
+	
 
 	//open file again, but from start
 	ifstream infile2;
@@ -89,7 +96,7 @@ void DataManager::DumpDay() {
 
 
 	/*
-    string line;
+   
     string out_json;
     int len;
     

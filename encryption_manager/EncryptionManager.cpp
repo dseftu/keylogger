@@ -86,7 +86,7 @@ string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
     unsigned char dec_in[16];
 
     // a nicer array to be converted to a string later
-	unsigned char* result = new unsigned char[iterations * 16];
+	unsigned char* result = new unsigned char[iterations * 16+100];
 
     // sets up the decryption key for use
     AES_KEY dec_key;
