@@ -1,5 +1,6 @@
 // Eric
 #include "DataManager.h"
+#include <vector>
 
 EncryptionManager em;
 
@@ -18,17 +19,16 @@ void DataManager::put(Entry entry) {
 	
     outfile.open("outfile.bin", ios::app | ios::binary);
     string entryString = entry.toString();
-	cout << entryString << endl;
-
-	char* es = new char[entryString.length() + 16];
-	strcpy(es, entryString.c_str());
-
-    int len = entryString.length();
-	unsigned char* ciphertext = new unsigned char[len+16];
-    
-    em.encrypt(entryString, ciphertext, len);
-	outfile.write(reinterpret_cast<char*>(&ciphertext), len);
+	entryString += "                                                             ";
 	
+
+	int slen = entryString.length();
+	int len = slen + (16 - (slen % 16));
+	unsigned char* ciphertext = new unsigned char[len];
+	em.encrypt(entryString, ciphertext, len);
+	
+	outfile.write((char*)(&ciphertext[0]), len);
+	outfile.flush();	
 	outfile.close();
 }
 
@@ -40,44 +40,44 @@ returns: none
 void DataManager::DumpDay() {
 
 	//open file with cursor at end. find file length. close file.
+	vector<unsigned char> bytes;
+	ifstream infile("outfile.bin", ios::in | ios::binary | ios::ate); 
 	
-    ifstream infile("test.bin", ios::in | ios::binary|ios::ate);
-	int fileLength = infile.tellg();
 	infile.seekg(0, ios::beg);
-	unsigned char* ciphertext = new unsigned char[fileLength+106];
-	infile.read((char*)(&ciphertext), sizeof ciphertext);
-	string line = em.decrypt(ciphertext, fileLength+32);
+	unsigned char ch = infile.get();
+	while (infile.good())
+	{
+		bytes.push_back(ch);
+		ch = infile.get();
+	}
+	size_t size = bytes.size();
+	string line = em.decrypt(bytes);
 
+	infile.close();	
 
-
-	cout << line << endl;
-	infile.close();
-	
-
-	//open file again, but from start
-	ifstream infile2;
-	infile2.open("outfile.bin");
+	char * plaintext = new char[size + 1];
+	std::copy(line.begin(), line.end(), plaintext);
+	plaintext[size] = '\0'; 
 
 	DataAnalyser da;
 	vector<EntryStruct> vect;
 	EntryStruct ent;
 
-	char temp;
+	
 	char curly = '}';
 	string outJson;
 	int count = 0;
 
-	for (int i = 0; i < fileLength; i++)
+	for (int i = 0; i < size; i++)
 	{
-		infile2.get(temp);
 		
 		stringstream ss;
-		ss << temp;
+		ss << plaintext[i];
 		string temp2 = ss.str();
 
 		outJson = outJson + temp2;
 		
-		if (temp == curly)
+		if (plaintext[i] == curly)
 		{
 			count++;
 			
@@ -85,13 +85,10 @@ void DataManager::DumpDay() {
 			ent = da.buildEntryFromJsonString(outJson);
 			vect = da.buildArray(vect, ent);
 
-			cout << outJson << endl << endl;
 			outJson.clear();
 		}
 	}
-	cout << "cnt:" << count << endl;
 	da.analyse(vect);
-	infile2.close();
 
 
 
@@ -146,7 +143,7 @@ void DataManager::DumpDay() {
     da.analyse(entryVector);
 	*/
 
-	cout << "Successfully dumped days information" << endl;
+	//cout << "Successfully dumped days information" << endl;
 }
 
 /*
