@@ -95,7 +95,7 @@ size_t read_file()
 	//Open the file and make sure it exists
 	hFile = fopen("./email_manager/" FILENAME, "rb");
 	if (!hFile) {
-		cout << "File not found!!!" << endl;
+		//cout << "File not found!!!" << endl;
 		_getch();
 		exit(EXIT_FAILURE);
 	}
@@ -105,7 +105,7 @@ size_t read_file()
 	fileSize = ftell(hFile);
 	fseek(hFile, 0, SEEK_SET);
 
-	cout << endl << "Encoding " FILENAME " please be patient..." << endl;
+	//cout << endl << "Encoding " FILENAME " please be patient..." << endl;
 
 	//Calculate the number of rows in Base64 encoded string.
 	//Also calculate the size of the new char to be created for the base64 encode string
@@ -201,7 +201,7 @@ void EmailManager::readAnalysisResults()
 	ifstream config;
 	config.open("./email_manager/config.txt");
 	if (!config.is_open())
-		cout << "can't open config file" << endl;
+		//cout << "can't open config file" << endl;
 
 	config >> temp;
 	employee = employee + temp + " ";
@@ -218,7 +218,7 @@ void EmailManager::readAnalysisResults()
 	ifstream results;
 	results.open("./email_manager/out.txt");
 	if (!results.is_open())
-		cout << "can't open out file" << endl;
+		//cout << "can't open out file" << endl;
 
 	temp.clear();
 	results >> temp;
@@ -300,7 +300,7 @@ void EmailManager::readAnalysisResults()
 	cout << swear[i] << endl;
 	cout << swearFreq[i] << endl;
 	}*/
-	cout << numSwears << endl; 
+	//cout << numSwears << endl; 
 
 	results.close();
 
