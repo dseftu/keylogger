@@ -1,5 +1,6 @@
 #include "encryption_manager.h"
 
+
 using namespace System;
 using namespace System::Runtime::InteropServices;
 
@@ -44,7 +45,7 @@ void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int
     // set up the encryption key for use
     
 
-	cout << "BEGIN ENCRYPTION" << endl;
+	//cout << "BEGIN ENCRYPTION" << endl;
     // encrypt in 16 block chunkts
     for (int i = 0; i < iterations; i++){
 
@@ -67,7 +68,7 @@ void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int
             ciphertext[(i*16)+j]=enc_out[j];
     }
 
-	cout << "END ENCRYPTION" << endl;
+	//cout << "END ENCRYPTION" << endl;
 }
 
 /*
@@ -77,9 +78,10 @@ params: unsigned char* ciphertext, an array containing the ciphertext
         Does not have to be the entirety of ciphertext.
 returns: a string of the decrypted plain text. 
 */
-string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
+string EncryptionManager::decrypt(vector<unsigned char> ciphertext) {
 
     // number of splits we need to make (16 byte blocks)
+	int len = ciphertext.size();
     int iterations = ((len)/16);
 
     // arrays to handle the input/output to the decrypt

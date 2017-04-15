@@ -131,12 +131,12 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     ent.name = "null";
     ent.duration = 0;
     ent.text = "null";
-
-	cout << temp.size() << endl;
+//
+	//cout << temp.size() << endl;
 	for (int i = 0; i < temp.size(); i++) {
-		cout << temp[i].name << endl;
-		cout << temp[i].text << endl;
-		cout << temp[i].duration << endl;;
+		//cout << temp[i].name << endl;
+		//cout << temp[i].text << endl;
+		//cout << temp[i].duration << endl;;
 	}
 
     // Sorts vector based on duration. must have at least 5 progs in vector or it crashes.

