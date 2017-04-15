@@ -33,30 +33,31 @@ returns:
 */
 void EncryptionManager::encrypt(string plaintext, unsigned char* ciphertext, int len) {
 
+	int slen = plaintext.length();
     // number of splits we need to make (16 byte blocks)
-    int iterations = ((len)/16)+1;
+    int iterations = ((len)/16);
 
     // arrays to handle the input/output to the encrypt
     unsigned char enc_out[16];
     unsigned char enc_in[16];
 
     // set up the encryption key for use
-    AES_KEY enc_key;
-    AES_set_encrypt_key(key, 256, &enc_key);
+    
 
 	cout << "BEGIN ENCRYPTION" << endl;
     // encrypt in 16 block chunkts
-    for (int i = 0; i <= iterations; i++){
+    for (int i = 0; i < iterations; i++){
 
         // copy the next 16 byte block of data to be encrypted
 		for (int j = 0; j < 16; j++) {
-			if (((i * 16) + j) > len)
+			if (((i * 16) + j) >= slen)
 				enc_in[(i * 16) + j] = 0;
 			else
 				enc_in[j] = plaintext[(i * 16) + j];
 		}
 
-            
+		AES_KEY enc_key;
+		AES_set_encrypt_key(key, 256, &enc_key);
 
         // encrypt data (enc_out will end up plaintext)
         AES_encrypt(enc_in, enc_out, &enc_key);
@@ -79,25 +80,31 @@ returns: a string of the decrypted plain text.
 string EncryptionManager::decrypt(unsigned char* ciphertext, int len) {
 
     // number of splits we need to make (16 byte blocks)
-    int iterations = ((len)/16)+1;
+    int iterations = ((len)/16);
 
     // arrays to handle the input/output to the decrypt
     unsigned char dec_out[16];
     unsigned char dec_in[16];
 
     // a nicer array to be converted to a string later
-	unsigned char* result = new unsigned char[iterations * 16];
+	unsigned char* result = new unsigned char[len];
 
-    // sets up the decryption key for use
-    AES_KEY dec_key;
-    AES_set_decrypt_key(key,256,&dec_key);
+    
 
     // decrypt in 16 byte blocks
-    for (int i = 0; i <= iterations; i++){
+    for (int i = 0; i < iterations; i++){
+		
 
         // copy the next 16 byte block of data to be decrypted
-        for (int j = 0; j < 16; j++)
-            dec_in[j]=ciphertext[(i*16)+j];
+		for (int j = 0; j < 16; j++) {
+			if ((i * 16) + j >= len)
+				dec_in[j] = ' ';
+			else
+				dec_in[j] = ciphertext[(i * 16) + j];
+		}
+		// sets up the decryption key for use
+		AES_KEY dec_key;
+		AES_set_decrypt_key(key, 256, &dec_key);
 
         // decrypt data (dec_out will end up plaintext)
         AES_decrypt(dec_in, dec_out, &dec_key);
