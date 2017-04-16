@@ -261,20 +261,6 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     myfile << top[2].name << "\n" << top3 << "\n";
     myfile << top[3].name << "\n" << top4 << "\n";
 	myfile << top[4].name << "\n" << top5 << "\n";
-	/*
-	int flag = 0;
-	for (int i = 0; i < sizeof(numswear)/sizeof(numswear[0]); i++)
-	{
-		if (numswear[i] > 0) {
-			flag = 1;
-		}
-	}
-
-	if(flag==1)
-		myfile << top[4].name << "\n" << top5 << "\n";
-	else
-		myfile << top[4].name << "\n" << top5 << "\n";
-	*/
 
     // Prints out swear words and how many times they appear to file
     for(size_t i = 0; i < 3; i++) { 
@@ -283,7 +269,6 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
         else
             myfile << swear[i] << endl << numswear[i] << "\n";
     }
-
 }
 
 /*

@@ -282,17 +282,16 @@ void EmailManager::readAnalysisResults()
 	int i = 0;
 	while (true)
 	{
-		if (results.eof())
-			break;
-
 		results >> swear[i];
 		results >> swearFreq[i];
 
 		numSwears++;
 		i++;
 		
-		if (results.eof())
+		if (results.eof()) {
+			numSwears--;
 			break;
+		}	
 	}
 
 	/*for (i = 0; i < 2; i++)
@@ -581,18 +580,18 @@ void EmailManager::createPDF()
 		//cout << tempy.length() + 1 << endl;
 
 		HPDF_Page_BeginText(page1);
-		if (xCoord + tempy.length()*6.5 > 550)
+		if (xCoord + tempy.length()*7 > 550)
 		{
 			//start a newline, then print
 			xCoord = 50;
 			yCoord -= 25;
 			HPDF_Page_TextOut(page1, xCoord, yCoord, finalSwear);
-			xCoord = xCoord + (HPDF_REAL)(tempy.length()*6.5);
+			xCoord = xCoord + (HPDF_REAL)(tempy.length()*7);
 		}
 		else
 		{
 			HPDF_Page_TextOut(page1, xCoord, yCoord, finalSwear);
-			xCoord = xCoord + (HPDF_REAL)(tempy.length()*6.5);
+			xCoord = xCoord + (HPDF_REAL)(tempy.length()*7);
 		}
 		HPDF_Page_EndText(page1);
 	}
@@ -600,7 +599,7 @@ void EmailManager::createPDF()
 	HPDF_SaveToFile(pdf, "./email_manager/" FILENAME);
 	HPDF_Free(pdf);
 
-	emailPDF();
+	//emailPDF();
 }
 
 void EmailManager::emailPDF()
@@ -644,3 +643,13 @@ void EmailManager::emailPDF()
 	}
 	delete[] fileBuf;
 }
+
+/*
+int main()
+{
+	EmailManager em = EmailManager();
+	em.readAnalysisResults();
+
+	return 0;
+}
+*/

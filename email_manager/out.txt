@@ -1,16 +1,18 @@
-00 00 11
-00 00 10
-00 00 01
-0.91
-sublime_text 
-0.55
-outlook 
-0.18
-taskmgr 
-0.09
+04 39 46
+02 46 54
+01 52 52
+0.6
 steam 
-0.09
-slack 
-0.09
+0.35
+winword 
+0.21
+chrome 
+0.2
+explorer 
+0.19
+solitaire 
+0.05
 dumb
-6
+1
+stupid
+4

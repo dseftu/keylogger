@@ -1,4 +1,13 @@
 ﻿  DataAnalysis.cpp
+  DataManager.cpp
+  Entry.cpp
+  EmailManager.cpp
+  EncryptionManager.cpp
+  LoggingManager.cpp
+logging_manager\LoggingManager.cpp(95): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+  stdafx.cpp
+  Generating Code...
+  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
   DataAnalysis.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
-  danklogger.vcxproj -> C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\Debug\danklogger.exe
-  danklogger.vcxproj -> C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\Debug\danklogger.pdb (Partial PDB)
+  danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.exe
+  danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.pdb (Partial PDB)
