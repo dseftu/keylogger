@@ -110,7 +110,7 @@ DWORD WINAPI mythread(LPVOID lpParameter) {
         for (i = 8; i<=190; i++){
             // get current time and strip date
 			System::DateTime currentTime = System::DateTime().Now;			
-			bool timeToProcess = currentTime.Hour == 17;			
+			bool timeToProcess = currentTime.Hour == 18;			
 			System::TimeSpan ts = currentTime - startTime;
 
 
