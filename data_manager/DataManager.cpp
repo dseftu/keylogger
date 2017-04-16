@@ -1,9 +1,10 @@
 // Eric
 #include "DataManager.h"
 #include <vector>
+#include <queue>
 
 EncryptionManager em;
-
+vector<Entry> entriesToProcess;
 
 DataManager::DataManager() {
     em = EncryptionManager();
@@ -14,6 +15,7 @@ description: appends an encrypted entry to the end of outfile.bin
 params: 
 returns: 
 */
+/*
 void DataManager::put(Entry entry) {
 	ofstream outfile;
 
@@ -30,6 +32,34 @@ void DataManager::put(Entry entry) {
 	outfile.write((char*)(&ciphertext[0]), len);
 	outfile.flush();	
 	outfile.close();
+}*/
+
+void DataManager::process() {
+	for (int i = 0; i < (int)entriesToProcess.size(); i++) {
+		Entry entry = entriesToProcess.front();
+		entriesToProcess.erase(entriesToProcess.begin());
+
+		ofstream outfile;
+
+		// remember to add comments later
+		outfile.open("outfile.bin", ios::app | ios::binary);
+		string entryString = entry.toString();
+		entryString += "                                                             ";
+
+		int slen = entryString.length();
+		int len = slen + (16 - (slen % 16));
+		unsigned char* ciphertext = new unsigned char[len];
+		em.encrypt(entryString, ciphertext, len);
+
+		outfile.write((char*)(&ciphertext[0]), len);
+		outfile.flush();
+		outfile.close();
+
+	}
+}
+
+void DataManager::put(Entry entry) {
+	entriesToProcess.push_back(entry);
 }
 
 /*
@@ -55,9 +85,9 @@ void DataManager::DumpDay() {
 
 	infile.close();	
 
-	char * plaintext = new char[size + 1];
-	std::copy(line.begin(), line.end(), plaintext);
-	plaintext[size] = '\0'; 
+	//char * plaintext = new char[size + 1];
+	//std::copy(line.begin(), line.end(), plaintext);
+	//plaintext[size] = '\0'; 
 
 	DataAnalyser da;
 	vector<EntryStruct> vect;
@@ -71,12 +101,12 @@ void DataManager::DumpDay() {
 	{
 		
 		stringstream ss;
-		ss << plaintext[i];
+		ss << line.at(i);
 		string temp2 = ss.str();
 
 		outJson = outJson + temp2;
 		
-		if (plaintext[i] == curly)
+		if (line.at(i) == curly)
 		{
 			count++;
 			

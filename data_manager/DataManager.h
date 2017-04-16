@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <encryption_manager.h>
+#include "..\encryption_manager\encryption_manager.h"
 
 #include "..\data_analysis\DataAnalysis.h"
 #include "..\data_manager\Entry.h"
@@ -22,5 +22,6 @@ class DataManager {
         DataManager();
 		void DumpDay();
 		void init();
+		void process();
 };
 

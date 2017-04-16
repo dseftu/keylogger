@@ -10,7 +10,7 @@ params:
 returns: 
 */
 EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
-    string arr[5000];
+    vector<string> arr;
     string activeProcess = "", duration, text = "";
     int numduration; 
     char ch;
@@ -21,7 +21,9 @@ EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
     */
     stringstream ssin(json_str);
     while(ssin.good() && i < 500) {
-        ssin >> arr[i];
+		string t1;
+        ssin >> t1;
+		arr.push_back(t1);
         i++;
     }
     /*
@@ -30,35 +32,41 @@ EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
         After this it is ready to be thrown into an entry object
     */
     for(j = 0; j < i; j++) {
-       ch = *arr[j].begin();
+		if (arr[j].length() == 0) break;
+       ch = arr[j].at(0);
        // removes { from beginning
        if(ch == '{') {
            arr[j].erase(arr[j].begin());
-           ch = *arr[j].begin();
+		   if (arr[j].length() == 0) break;
+		   ch = arr[j].at(0);
        } 
        // removes " from begining
        if(ch == '"') 
             arr[j].erase(arr[j].begin());
-        ch = *arr[j].rbegin();
+	   if (arr[j].length() == 0) break;
+	   ch = arr[j].at(arr[j].length()-1);
         // removes , from end
         if(ch == ',') {
             arr[j].erase(arr[j].size()-1);
-            ch = *arr[j].rbegin();
+			if (arr[j].length() == 0) break;
+			ch = arr[j].at(arr[j].length() - 1);
         }
         // removes : from end
         if(ch == ':') {
             arr[j].erase(arr[j].size()-1);
-            ch = *arr[j].rbegin();
+			if (arr[j].length() == 0) break;
+			ch = arr[j].at(arr[j].length() - 1);
         }
         // removes } from end
         if(ch == '}') {
             arr[j].erase(arr[j].size()-1);
-            ch = *arr[j].rbegin();
+			if (arr[j].length() == 0) break;
+			ch = arr[j].at(arr[j].length() - 1);
         }
         // removes " from end
         if(ch == '"')
             arr[j].erase(arr[j].size()-1);
-
+		if (arr[j].length() == 0) break;
         // Turns all uppcase characters in the strings to lowercase
         transform(arr[j].begin(), arr[j].end(), arr[j].begin(), ::tolower);
     }
@@ -83,19 +91,21 @@ EntryStruct DataAnalyser::buildEntryFromJsonString(string json_str) {
         if(arr[j] == "logged_keystrokes") {
             do {
                 j++;
-                text += arr[j] + " ";
-            } while(j < i);
+				// see if we actually got any text
+				if (j >= (int)arr.size()-1) text += " ";
+				else text += arr[j] + " ";
+            } while(j < (int)arr.size() - 1);
         }
     }
     // Converts duration strng to an integer
     numduration = atoi(duration.c_str());
 
     // Builds Entry to return
-	EntryStruct temp;
-    temp.name = activeProcess;
-    temp.text = text;
-    temp.duration = numduration;
-    return temp;
+	EntryStruct entryToReturn;
+	entryToReturn.name = activeProcess;
+	entryToReturn.text = text;
+	entryToReturn.duration = numduration;
+    return entryToReturn;
 }
 
 vector<EntryStruct> DataAnalyser::buildArray(vector<EntryStruct> & v, EntryStruct entry) {
@@ -125,6 +135,10 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     int totalLog = 0; 
 	int hours, minutes; //seconds; 
     vector<EntryStruct> temp;
+	EntryStruct nullEntry;
+	nullEntry.duration = 0;
+	nullEntry.name = "     ";
+	nullEntry.text = "     ";
 	EntryStruct top[5];
     temp = v;
 	EntryStruct ent;
@@ -135,7 +149,8 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     // Sorts vector based on duration. must have at least 5 progs in vector or it crashes.
     sort(temp.begin(), temp.end(), comp);
     for(size_t i = 0; i < 5; i++) {
-        top[i] = temp[i];
+		if (i > temp.size() - 1) top[i] = nullEntry;
+        else top[i] = temp[i];
     }
 	
     // Counts swear words
@@ -143,6 +158,8 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     //int found;
     for(size_t i = 0; i < temp.size(); i++) {
         str = temp[i].text;
+		transform(str.begin(), str.end(), str.begin(), ::tolower);
+
         for(size_t j = 0; j < sizeof(swear)/sizeof(swear[0]); j++) {
             //found = str.find(swear[j]);
 

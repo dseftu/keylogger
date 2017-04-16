@@ -574,7 +574,7 @@ void EmailManager::createPDF()
 
 	for (int i = 0; i < numSwears; i++)
 	{
-		string tempy = swear[i] + "(" + swearFreq[i] + "x),";
+		string tempy = swear[i] + " (" + swearFreq[i] + "x) ";
 		char* finalSwear = new char[tempy.length() + 1];
 		strcpy(finalSwear, tempy.c_str());
 		//cout << tempy << endl;

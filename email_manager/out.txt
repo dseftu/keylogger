@@ -1,18 +1,16 @@
-00 00 32
-00 00 24
-00 00 08
-0.75
-excel 
-0.29
-onenote 
-0.29
+00 00 11
+00 00 10
+00 00 01
+0.91
+sublime_text 
+0.55
+outlook 
+0.18
+taskmgr 
+0.09
 steam 
-0.26
-chrome 
-0.1
-code 
-0.06
+0.09
+slack 
+0.09
 dumb
-3
-donkey
-4
+6
