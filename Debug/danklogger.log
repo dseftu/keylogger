@@ -1,10 +1,29 @@
-﻿  DataManager.cpp
-data_manager\DataManager.cpp(46): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+﻿  DataAnalysis.cpp
+  DataManager.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xutility(2350): warning C4996: 'std::copy::_Unchecked_iterators::_Deprecate': Call to 'std::copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xutility(2350): note: see declaration of 'std::copy::_Unchecked_iterators::_Deprecate'
+  data_manager\DataManager.cpp(59): note: see reference to function template instantiation '_OutIt std::copy<std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,char*>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=char *,
+              _InIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>
+          ]
+  Entry.cpp
   EmailManager.cpp
+  EncryptionManager.cpp
   LoggingManager.cpp
-logging_manager\LoggingManager.cpp(92): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+logging_manager\LoggingManager.cpp(95): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+  stdafx.cpp
+  Compiling...
   Generating Code...
-c:\users\vienhang\documents\github\keylogger\logging_manager\loggingmanager.cpp(68): warning C4715: 'GetProcessName': not all control paths return a value
+  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
   DataAnalysis.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
-  danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.exe
-  danklogger.vcxproj -> C:\Users\Vienhang\Documents\GitHub\keylogger\Debug\danklogger.pdb (Partial PDB)
+  danklogger.vcxproj -> C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\Debug\danklogger.exe
+  danklogger.vcxproj -> C:\Users\dseft\Google Drive\GitHub Workspace\keylogger\keylogger\Debug\danklogger.pdb (Partial PDB)
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\data_analysis\dataanalysis.cpp(12): warning C6262: Function uses '140368' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\encryptionmanager.cpp(119): warning C6386: Buffer overrun while writing to 'result':  the writable size is 'len*1' bytes, but '2' bytes might be written.
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\encryption_manager\encryptionmanager.cpp(126): warning C6001: Using uninitialized memory '*result'.
+c:\users\dseft\google drive\github workspace\keylogger\keylogger\logging_manager\loggingmanager.cpp(110): warning C6295: Ill-defined for-loop:  'char' values are always of range '-128' to '127'.  Loop executes infinitely.
+  Running Code Analysis...
+MSBUILD : warning CA1016: Microsoft.Design : Add an AssemblyVersion attribute to 'danklogger.exe'.
+  Code Analysis Complete -- 0 error(s), 1 warning(s)

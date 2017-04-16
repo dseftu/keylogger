@@ -1,14 +1,18 @@
-00 00 26
-00 00 26
-00 00 00
-1
-danklogger 
-0.6
-applicationframehost 
-0.12
-taskmgr 
-0.12
-notepad++ 
-0.08
+00 00 32
+00 00 24
+00 00 08
+0.75
+excel 
+0.29
+onenote 
+0.29
+steam 
+0.26
 chrome 
-0.08
+0.1
+code 
+0.06
+dumb
+3
+donkey
+4

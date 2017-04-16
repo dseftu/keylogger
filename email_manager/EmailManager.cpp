@@ -96,7 +96,7 @@ size_t read_file()
 	hFile = fopen("./email_manager/" FILENAME, "rb");
 	if (!hFile) {
 		//cout << "File not found!!!" << endl;
-		_getch();
+		int g = _getch();
 		exit(EXIT_FAILURE);
 	}
 

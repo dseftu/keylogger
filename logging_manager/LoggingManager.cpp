@@ -67,6 +67,7 @@ string GetProcessName(DWORD dwPID) {
         // close handle for help program
         CloseHandle(hSnapshot);
     }
+	return "Unknown";
 }
 
 timeStruct getTime() {

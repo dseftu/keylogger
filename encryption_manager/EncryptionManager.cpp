@@ -90,8 +90,7 @@ string EncryptionManager::decrypt(vector<unsigned char> ciphertext) {
 
     // a nicer array to be converted to a string later
 	unsigned char* result = new unsigned char[len];
-
-    
+	
 
     // decrypt in 16 byte blocks
     for (int i = 0; i < iterations; i++){
