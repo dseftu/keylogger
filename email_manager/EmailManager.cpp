@@ -599,7 +599,7 @@ void EmailManager::createPDF()
 	HPDF_SaveToFile(pdf, "./email_manager/" FILENAME);
 	HPDF_Free(pdf);
 
-	//emailPDF();
+	emailPDF();
 }
 
 void EmailManager::emailPDF()
