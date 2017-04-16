@@ -131,13 +131,6 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
     ent.name = "null";
     ent.duration = 0;
     ent.text = "null";
-//
-	//cout << temp.size() << endl;
-	for (int i = 0; i < temp.size(); i++) {
-		//cout << temp[i].name << endl;
-		//cout << temp[i].text << endl;
-		//cout << temp[i].duration << endl;;
-	}
 
     // Sorts vector based on duration. must have at least 5 progs in vector or it crashes.
     sort(temp.begin(), temp.end(), comp);
@@ -147,12 +140,20 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
 	
     // Counts swear words
     string str;
-    int found;
+    //int found;
     for(size_t i = 0; i < temp.size(); i++) {
         str = temp[i].text;
         for(size_t j = 0; j < sizeof(swear)/sizeof(swear[0]); j++) {
-            found = str.find(swear[j]);
-            if(found > 0) numswear[j]++;
+            //found = str.find(swear[j]);
+
+            //if(found > 0) numswear[j]++;
+
+			// New part - TESTING
+			int startIdx = str.find(swear[j], 0);
+			while (startIdx != -1) {
+				numswear[j]++;
+				startIdx = str.find(swear[j], startIdx+1);
+			};
         }
     }
 
@@ -169,6 +170,7 @@ void DataAnalyser::analyse(vector<EntryStruct> & v) {
 
     int unprodTime = 0;
     int prodTime = 0;
+	int found;
     // Gets unproductive time
     for(size_t i = 0; i < temp.size(); i++) {
         str = temp[i].name;

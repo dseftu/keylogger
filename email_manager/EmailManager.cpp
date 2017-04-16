@@ -200,7 +200,7 @@ void EmailManager::readAnalysisResults()
 
 	ifstream config;
 	config.open("./email_manager/config.txt");
-	if (!config.is_open())
+	//if (!config.is_open())
 		//cout << "can't open config file" << endl;
 
 	config >> temp;
@@ -217,7 +217,7 @@ void EmailManager::readAnalysisResults()
 
 	ifstream results;
 	results.open("./email_manager/out.txt");
-	if (!results.is_open())
+	//if (!results.is_open())
 		//cout << "can't open out file" << endl;
 
 	temp.clear();

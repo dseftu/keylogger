@@ -16,11 +16,11 @@ returns:
 */
 void DataManager::put(Entry entry) {
 	ofstream outfile;
-	
+
+	// remember to add comments later
     outfile.open("outfile.bin", ios::app | ios::binary);
     string entryString = entry.toString();
 	entryString += "                                                             ";
-	
 
 	int slen = entryString.length();
 	int len = slen + (16 - (slen % 16));
@@ -62,7 +62,6 @@ void DataManager::DumpDay() {
 	DataAnalyser da;
 	vector<EntryStruct> vect;
 	EntryStruct ent;
-
 	
 	char curly = '}';
 	string outJson;
