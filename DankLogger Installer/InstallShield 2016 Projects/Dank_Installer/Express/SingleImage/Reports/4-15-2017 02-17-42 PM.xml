@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="C:\Program Files (x86)\InstallShield\2016\Support\0409\buildreport.xsl"?>
+<BuildReport ProductName="Dank_Installer" ProductVersion="1.0" Built="4-15-2017 02-17-42 PM" Config="Express" Media="SingleImage" Uncompressed="0.00 MB">
+  <Features>
+    <Feature Title="##DN_AlwaysInstall##" Description="Enter the description for this feature here." Comment="Enter comments regarding this feature here.">AlwaysInstall</Feature>
+  </Features>
+  <Components>
+    <Component x64="32">ISX_DEFAULTCOMPONENT</Component>
+    <Component x64="32" KeyPath="danklogger.exe">danklogger.exe</Component>
+  </Components>
+  <Prerequisites />
+  <MergeModules />
+  <DynamicLinks />
+  <Files>
+    <File Destination="{INSTALLDIR} [ProgramFilesFolder]Team Dank\DankLogger" Component="danklogger.exe" Modified="4/4/2017 8:37:20 PM" Size="1057780" Version="">danklogger.exe</File>
+    <File Destination="{INSTALLDIR} [ProgramFilesFolder]Team Dank\DankLogger" Component="ISX_DEFAULTCOMPONENT" Modified="4/7/2017 9:25:07 PM" Size="38" Version="">config.txt</File>
+  </Files>
+</BuildReport>
